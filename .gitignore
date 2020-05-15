@@ -1,2 +1,5 @@
 uploads/
 captcha/
+application/backend/config/database.php
+application/frontend/config/database.php
+
