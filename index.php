@@ -82,7 +82,7 @@ switch (ENVIRONMENT)
 		else
 		{
 			error_reporting(E_ALL & ~E_STRICT & ~E_USER_NOTICE);
-		}	
+		}
 	case 'production':
 		ini_set('display_errors', 0);
 		if (version_compare(PHP_VERSION, '5.3', '>='))
@@ -243,7 +243,7 @@ switch (ENVIRONMENT)
 
 	// Path to root onur
 	define('ROOTPATH', str_replace("/system", "", BASEPATH));
-	
+
 	// Path to the front controller (this file) directory
 	define('FCPATH', dirname(__FILE__).DIRECTORY_SEPARATOR);
 
@@ -282,7 +282,7 @@ switch (ENVIRONMENT)
 	}
 
 	define('APPPATH', $application_folder.DIRECTORY_SEPARATOR);
-	
+
 	// The path to the "views" directory
 	if ( ! isset($view_folder[0]) && is_dir(APPPATH.'views'.DIRECTORY_SEPARATOR))
 	{

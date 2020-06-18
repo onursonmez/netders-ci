@@ -1,4 +1,4 @@
-<?if($this->router->fetch_class() != 'messages'):?>   
+<?if($this->router->fetch_class() != 'messages'):?>
    <section class="dark-header">
    		<div class="container">
 		    <div class="row">
@@ -21,9 +21,9 @@
 		    </div>
    		</div>
     </section>
-    
+
     <hr class="dark no-margin" />
-    
+
     <section class="dark-header footer text-xs-center">
 	    <div class="container">
 		    <div class="row">
@@ -67,8 +67,8 @@
 		    </div>
 	    </div>
     </section>
-   
-   <hr class="dark no-margin" /> 
+
+   <hr class="dark no-margin" />
 
 	<section class="dark-header">
 		<div class="container">
@@ -82,7 +82,7 @@
 				</div>
 			</div>
 		</div>
-	</section>         
+	</section>
 	</div>
 <?endif;?>
 	<!-- Modal Terms -->
@@ -105,7 +105,7 @@
 	    </div><!-- /.modal-content -->
 	  </div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
-	
+
 	<!-- Modal Expert Terms -->
 	<div class="modal fade" id="expert-terms-txt" tabindex="-1" role="dialog" aria-labelledby="expertTermsLabel" aria-hidden="true">
 	  <div class="modal-dialog">
@@ -125,8 +125,8 @@
 	      </div>
 	    </div><!-- /.modal-content -->
 	  </div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->	    
-	
+	</div><!-- /.modal -->
+
 	<nav id="navbar">
 		<ul>
 			<li><a href="<?=site_url()?>"><i class="fa fa-home fa-fw yellow-text"></i> Ana Sayfa</a></li>
@@ -150,14 +150,14 @@
 							<li><a href="<?=site_url('users/preferences')?>"><i class="fa fa-wrench fa-fw yellow-text"></i> Tercihler</a></li>
 							<li><a href="<?=site_url('users/prices')?>"><i class="fa fa-tags fa-fw yellow-text"></i> Ders Ücretleri</a></li>
 							<li><a href="<?=site_url('users/locations')?>"><i class="fa fa-globe fa-fw yellow-text"></i> Ders Verilen Bölgeler</a></li>
-	
+
 							<?if($this->session->userdata('user_status') == 'A'):?>
 								<li><a href="<?=site_url('users/memberships')?>"><i class="fa fa-star fa-fw yellow-text"></i> Üyelik İşlemleri</a></li>
 								<li><a href="<?=site_url('users/activities')?>"><i class="fa fa-tasks fa-fw yellow-text"></i> Hesap Hareketleri</a></li>
-								<li><a href="<?=site_url('users/discounts')?>"><i class="fa fa-percent fa-fw yellow-text"></i> İndirimler</a></li>								
+								<li><a href="<?=site_url('users/discounts')?>"><i class="fa fa-percent fa-fw yellow-text"></i> İndirimler</a></li>
 								<?if($this->session->userdata('user_ugroup') == 5 || $this->session->userdata('user_service_web') == 'Y'):?>
 									<li><a href="<?=site_url('users/web')?>"><i class="fa fa-anchor fa-fw yellow-text"></i> Özel Web Sayfası Ayarları</a></li>
-								<?endif;?>								
+								<?endif;?>
 								<!--<li><a href="<?=site_url('users/live')?>"><i class="fa fa-laptop fa-fw yellow-text"></i> Canlı Ders Ver</a></li>-->
 							<?endif;?>
 						<?else:?>
@@ -165,7 +165,7 @@
 						<?endif;?>
 						<!--
 						<?if($this->session->userdata('user_status') == 'A'):?>
-							<li><a href="#">Mesajlar</a></li>								
+							<li><a href="#">Mesajlar</a></li>
 						<?endif;?>
 						-->
 						<li><a href="<?=site_url('messages')?>"><i class="fa fa-comments fa-fw yellow-text"></i> Mesajlar</a></li>
@@ -176,7 +176,7 @@
 				<?$check_cart = check_cart();?>
 				<?if(!empty($check_cart)):?>
 				<li><a href="<?=site_url('services/cart')?>"><i class="fa fa-shopping-basket fa-fw yellow-text"></i> Alışveriş Sepeti <span class="badge"><?=$check_cart?></span></a></li>
-				<?endif;?>			
+				<?endif;?>
 			<?else:?>
 				<li><a href="<?=site_url('giris')?>"><i class="fa fa-lock fa-fw yellow-text"></i> Giriş Yapın</a></li>
 				<li><a href="<?=site_url('kayit')?>"><i class="fa fa-shopping-basket fa-fw yellow-text"></i> Ücretsiz Üye Olun</a></li>
@@ -185,10 +185,10 @@
 			<?endif;?>
 
 			<li><a href="<?=_make_link('contents', 14)?>"><i class="fa fa-file-text-o fa-fw yellow-text"></i> Kullanım Koşulları</a></li>
-			<li><a href="<?=_make_link('contents', 38)?>"><i class="fa fa-file-text-o fa-fw yellow-text"></i> Gizlilik İlkeleri</a></li>			
+			<li><a href="<?=_make_link('contents', 38)?>"><i class="fa fa-file-text-o fa-fw yellow-text"></i> Gizlilik İlkeleri</a></li>
 		</ul>
 	</nav>
-		
+
 	<div id="fb-root"></div>
 	<script>(function(d, s, id) {
 	  var js, fjs = d.getElementsByTagName(s)[0];
@@ -196,87 +196,10 @@
 	  js = d.createElement(s); js.id = id;
 	  js.src = "//connect.facebook.net/tr_TR/sdk.js#xfbml=1&version=v2.4&appId=1590771401140056";
 	  fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));</script>
-	
-	<!-- Place this tag in your head or just before your close body tag. -->
-	<script src="https://apis.google.com/js/platform.js" async defer>
-	  {lang: 'tr'}
-	</script>
+	}(document, 'script', 'facebook-jssdk'));
+  </script>
 
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript" >
-    (function (d, w, c) {
-        (w[c] = w[c] || []).push(function() {
-            try {
-                w.yaCounter31356598 = new Ya.Metrika({
-                    id:31356598,
-                    clickmap:true,
-                    trackLinks:true,
-                    accurateTrackBounce:true,
-                    webvisor:true,
-                    trackHash:true
-                });
-            } catch(e) { }
-        });
+	</div><!--.wrapper-->
 
-        var n = d.getElementsByTagName("script")[0],
-            s = d.createElement("script"),
-            f = function () { n.parentNode.insertBefore(s, n); };
-        s.type = "text/javascript";
-        s.async = true;
-        s.src = "https://mc.yandex.ru/metrika/watch.js";
-
-        if (w.opera == "[object Opera]") {
-            d.addEventListener("DOMContentLoaded", f, false);
-        } else { f(); }
-    })(document, window, "yandex_metrika_callbacks");
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/31356598" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
-	
-	<?if($_SERVER['HTTP_HOST'] != 'localhost'):?>
-	<!--Start of Zopim Live Chat Script-->
-	<!--
-	<script type="text/javascript">
-	window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
-	d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
-	_.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute("charset","utf-8");
-	$.src="//v2.zopim.com/?4EcuKxjJKJbqvIAvfKmYEGoVpi9xC4y5";z.t=+new Date;$.
-	type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
-	</script>
-	-->
-	<!--End of Zopim Live Chat Script-->
-
-	<!--Start of Tawk.to Script-->
-	<!--
-	<script type="text/javascript">
-	var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-	(function(){
-	var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-	s1.async=true;
-	s1.src='https://embed.tawk.to/58ad59246398130aabdbb92b/default';
-	s1.charset='UTF-8';
-	s1.setAttribute('crossorigin','*');
-	s0.parentNode.insertBefore(s1,s0);
-	})();
-	</script>
-	-->
-	<!--End of Tawk.to Script-->
-	<?endif;?>
-	
-    <?=get_data($this->session->flashdata('conversion'))?>
-    
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-122679204-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-122679204-1');
-</script>   
-
-	</div> <!--.wrapper-->
-    
   </body>
 </html>

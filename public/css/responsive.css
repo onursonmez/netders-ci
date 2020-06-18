@@ -17,12 +17,12 @@
 	.big-input, .big-button{
 		min-height: 50px;
 		font-size: 18px;
-		padding-left:10px; 
-		padding-right:10px;		
+		padding-left:10px;
+		padding-right:10px;
 	}
-	
+
 	section.white-header, section.grey-header, section.dark-header{padding: 30px 10px}
-	
+
 	.search-title{margin-top:20px}
 	.profile-preferences-item{height: auto;}
 	.profile-top-wrapper .row .no-float{display: inline-block; float: none;}
@@ -43,7 +43,7 @@
     .text-sm-center { text-align: center; }
     .text-sm-justify { text-align: justify; }
     .search-title{margin-top:20px}
-	.navbar-header { float: none; }  
+	.navbar-header { float: none; }
 
 	.profile-top-wrapper .row .no-float{display: inline-block; float: none;}
 	.profile-top-wrapper .profile-top-right{float: none;margin: 0;border-left: transparent;border-radius: 0 0 4px 4px;}
