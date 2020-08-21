@@ -4,7 +4,7 @@
 			Yapay Zeka Cümlesi Oluştur
 			<span class="pull-right"><a href="#" onclick="document.generate.submit();"><i class="fa fa-cog"></i> <?=lang('GENERATE')?></a></span>
 		</header>
-		<div class="panel-body">
+		<div class="card-body">
 			<div class="table-responsive" style="width:1375px;overflow-x:scroll!important;">
 				<table class="table">
 					<thead>
@@ -31,7 +31,7 @@
 		<header class="panel-heading bg-light">
 			Oluşturulan Yapay Zeka Cümlesi
 		</header>
-		<div class="panel-body">
+		<div class="card-body">
 			<?=$generated_word?>	
 		</div>
 	</section>
@@ -42,7 +42,7 @@
 				Yeni Yapay Zeka Cümlesi
 				<span class="pull-right"><a href="#" onclick="document.new.submit();"><i class="fa fa-check"></i> <?=lang('SAVE')?></a></span>
 			</header>
-			<div class="panel-body">
+			<div class="card-body">
 				<div class="table-responsive" style="width:1375px;overflow-x:scroll!important;">
 					<table class="table">
 						<thead>
@@ -82,7 +82,7 @@
 			Yapay Zeka Cümleleri (Anahtar kelime içeren: <?=$total_words[0]?>, içermeyen: <?=$total_words[1]?>)
 			<span class="pull-right"><a href="#" onclick="document.update.submit();"><i class="fa fa-refresh"></i> <?=lang('UPDATE')?></a></span>
 		</header>
-		<div class="panel-body">
+		<div class="card-body">
 			<div class="table-responsive" style="width:1375px;overflow-x:scroll!important;">
 				<table class="table">
 					<thead>

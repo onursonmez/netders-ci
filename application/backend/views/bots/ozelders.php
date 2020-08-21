@@ -3,7 +3,7 @@
 		Ozelders.com Bot
 	</header>
 	
-	<div class="panel-body">
+	<div class="card-body">
 		<form method="GET" action="<?=current_url()?>">
 			<div class="row">
 				<div class="col-md-4">
@@ -33,7 +33,7 @@
 			<span class="pull-right"><a onclick="add(<?=$item['id']?>); return false;" href="#">Ekle</a></span>
 			<div class="clearfix"></div>
 		</header>
-		<div class="panel-body">
+		<div class="card-body">
 			<div class="row">
 				<div class="col-md-2">
 					<div class="row">

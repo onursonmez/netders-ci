@@ -4,7 +4,7 @@
 <header class="panel-heading bg-light">
 	<?=$name?> grubu için izinler
 </header>
-<div class="panel-body">
+<div class="card-body">
   <form method="post" action="<?=current_url()?>" class="form-horizontal" onsubmit="return prepareSubmit(this);">
 
 			<?if(!empty($permissions)):?>

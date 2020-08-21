@@ -4,7 +4,7 @@
 <header class="panel-heading bg-light">
 	<?=lang('USERS_NEW_GROUP')?> 
 </header>
-<div class="panel-body">
+<div class="card-body">
   <form method="post" action="<?=current_url()?>" class="form-horizontal" onsubmit="return prepareSubmit(this);">
 
 			<div class="form-group">

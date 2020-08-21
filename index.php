@@ -1,7 +1,6 @@
 <?php
 $host = 'http' . ((isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' || $_SERVER['SERVER_PORT'] == 443) ? 's' : '') . '://'.$_SERVER['HTTP_HOST'];
 header("Access-Control-Allow-Source-Origin: $host");
-header("AMP-Access-Control-Allow-Source-Origin: $host");
 /**
  * CodeIgniter
  *
@@ -56,7 +55,7 @@ header("AMP-Access-Control-Allow-Source-Origin: $host");
  *
  * NOTE: If you change these, also change the error_reporting() code below
  */
-define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'production');
+define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
 
 /*
  *---------------------------------------------------------------
@@ -82,7 +81,7 @@ switch (ENVIRONMENT)
 		else
 		{
 			error_reporting(E_ALL & ~E_STRICT & ~E_USER_NOTICE);
-		}	
+		}
 	case 'production':
 		ini_set('display_errors', 0);
 		if (version_compare(PHP_VERSION, '5.3', '>='))
@@ -243,7 +242,7 @@ switch (ENVIRONMENT)
 
 	// Path to root onur
 	define('ROOTPATH', str_replace("/system", "", BASEPATH));
-	
+
 	// Path to the front controller (this file) directory
 	define('FCPATH', dirname(__FILE__).DIRECTORY_SEPARATOR);
 
@@ -282,7 +281,7 @@ switch (ENVIRONMENT)
 	}
 
 	define('APPPATH', $application_folder.DIRECTORY_SEPARATOR);
-	
+
 	// The path to the "views" directory
 	if ( ! isset($view_folder[0]) && is_dir(APPPATH.'views'.DIRECTORY_SEPARATOR))
 	{

@@ -1,6 +1,6 @@
-<div class="panel panel-default margin-bottom-20">
-	<div class="panel-heading"><h4>Eğitim Bilgileri</h4></div>
-	<div class="panel-body">
+<div class="card box-shadow mb-4">
+	<div class="card-header"><h4>Eğitim Bilgileri</h4></div>
+	<div class="card-body">
 		<form  action="<?=site_url('users/education')?>" method="post" class="ajax-form js-dont-reset">
 			<div class="row">	
 
@@ -44,8 +44,8 @@
 				</div>				
 				
 				<div class="col-md-12">
-					<button type="submit" class="btn btn-orange js-submit-btn">Güncelle</button>
-					<button disabled="disabled" class="btn btn-orange hide js-loader"><i class="fa fa-spinner fa-pulse fa-fw"></i> Lütfen bekleyiniz...</button>
+					<button type="submit" class="btn btn-primary js-submit-btn">Güncelle</button>
+					<button disabled="disabled" class="btn btn-orange d-none js-loader"><img class="align-middle" src="<?=base_url('public/img/spin.svg')?>" width="13" height="13" /> Lütfen bekleyiniz...</button>
 				</div>								
 			</div>
 			<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />

@@ -2,7 +2,7 @@
 <header class="panel-heading bg-light">
   Genel Ayarlar
 </header>
-<div class="panel-body">
+<div class="card-body">
   <form method="POST" action="<?=base_url('backend/settings')?>" class="form-horizontal" enctype="multipart/form-data">
   <div class="tab-content">
 

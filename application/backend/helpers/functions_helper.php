@@ -10,7 +10,6 @@ $GLOBALS['settings_global'] = global_settings();
 init_language();
 init_admin();
 
-
 $GLOBALS['settings_site'] = site_settings();
 
 init_trash();
@@ -19,10 +18,10 @@ function mget($key)
 {
 	/*
 	if($_SERVER['HTTP_HOST'] == 'localhost') return true;
-	
+
 	$memcache = new Memcache;
-	$memcache->connect("127.0.0.1", 11211);	
-	
+	$memcache->connect("127.0.0.1", 11211);
+
 	return $memcache->get($key);
 	*/
 	return false;
@@ -32,43 +31,43 @@ function mset($key, $value, $expire = 60)
 {
 	/*
 	if($_SERVER['HTTP_HOST'] == 'localhost') return true;
-	
+
 	$memcache = new Memcache;
-	$memcache->connect("127.0.0.1", 11211);	
-	
+	$memcache->connect("127.0.0.1", 11211);
+
 	$memcache->set($key, $value, false, $expire);
 	*/
-	return false;	
+	return false;
 }
 
 function mdel($key)
 {
 	/*
 	if($_SERVER['HTTP_HOST'] == 'localhost') return true;
-	
+
 	$memcache = new Memcache;
-	$memcache->connect("127.0.0.1", 11211);	
-	
+	$memcache->connect("127.0.0.1", 11211);
+
 	$memcache->delete($key);
 	*/
-	return false;	
+	return false;
 }
 
 function memcache_test()
 {
 	/*
 	global $memcache;
-	
+
 	if($_SERVER['HTTP_HOST'] == 'localhost') return true;
-	
+
 	if($_SERVER['REMOTE_ADDR'] == '46.2.178.252'){
 		$memcache->set('aaa', 'ttt', false, 60);
-		
+
 		echo $memcache->get('aaa');
 		exit;
 	}
 	*/
-	return false;		
+	return false;
 }
 
 function global_settings()
@@ -76,7 +75,7 @@ function global_settings()
 	$ci=& get_instance();
 	$ci->load->database();
 	$ci->load->library('session');
-	
+
 	$settings = $ci->db->from('settings_global')->get()->row();
 	return $settings;
 }
@@ -84,7 +83,7 @@ function global_settings()
 
 function site_settings()
 {
-	
+
 	$ci=& get_instance();
 
 	$settings = $ci->db->from('settings_site')
@@ -103,7 +102,7 @@ function init_language()
 
 	foreach(site_languages() as $language){
 		if($language->defaults == 'Y'){
-			$def_lang = $language;	
+			$def_lang = $language;
 		}
 		$all_lang[$language->lang_code] = $language;
 	}
@@ -112,13 +111,13 @@ function init_language()
 	if(!$ci->session->userdata('descr_sl')){
 		$ci->session->set_userdata(array('descr_sl' => $def_lang->lang_code));
 	}
-	
+
 	if(isset($descr_sl) && !empty($all_lang[$descr_sl])){
 		$ci->session->set_userdata(array('descr_sl' => $all_lang[$descr_sl]->lang_code));
 	}
 
 	define('DESCR_SL', $ci->session->userdata('descr_sl'));
-	
+
 	//Set admin language
 	if(!$ci->session->userdata('admin_sl')){
 		$default_admin_language = !empty($GLOBALS['settings_global']->default_admin_language) ? $GLOBALS['settings_global']->default_admin_language : $def_lang->lang_code;
@@ -135,7 +134,7 @@ function init_language()
 function init_admin()
 {
 	$ci=& get_instance();
-	
+
 	if($ci->input->get_post('content_limit') && is_numeric($ci->input->get_post('content_limit'))){
 		$ci->session->set_userdata(array('content_limit' => $ci->input->get_post('content_limit')));
 	} else if(!$ci->session->userdata('content_limit')) {
@@ -154,13 +153,13 @@ function init_admin()
 	if($ci->session->userdata('user_id')){
 		update_lastactive();
 	}
-	
+
 }
 
 function init_trash()
 {
 	$ci=& get_instance();
-	
+
 	if($ci->session->userdata('user_id')){
 		$date = strtotime('-'.$GLOBALS['settings_global']->trash_delete.' day', time());
 		if($GLOBALS['settings_global']->trash_delete > 0){
@@ -168,7 +167,7 @@ function init_trash()
 		} else {
 			$items = $ci->db->from('trash')->order_by('date', 'ASC')->get()->result();
 		}
-	
+
 		if(!empty($items)){
 			foreach($items as $item){
 				switch($item->module){
@@ -184,7 +183,7 @@ function init_trash()
 						} else {
 							$get_content_id = $ci->db->select('content_id')->from('contents')->where('id', $item->id)->get()->row();
 							$contents_class->deletelang($get_content_id->content_id, $item->lang_code, true);
-						}					
+						}
 					break;
 					case 'contents_categories':
 						include_once(APPPATH.'controllers/contents.php');
@@ -210,18 +209,18 @@ function init_trash()
 /*
 * İstenilen dil değişkenini aktif olan dile göre select ederek return eder.
 * Dil değişkenini bulamazsa başına ve sonuna # ekleyerek return olur.
-* 
+*
 * $param	: gelen dil anahtarı
 */
 function lang($param = ''){
 
 	$ci =& get_instance();
 	//eksik: productiona geçince cache queries i aktif et
-	
+
 	if(empty($param)) return false;
 
 	$lang_key = $ci->db->query("SELECT lang_value FROM ".$ci->db->dbprefix('lang_keys')." WHERE lang_code = ? AND lang_key = ? LIMIT 1", array(ADMIN_SL, $param))->row();
-	
+
 	if(empty($lang_key->lang_value)){
 		$check = $ci->db->query("SELECT lang_key FROM ".$ci->db->dbprefix('lang_keys_empties')." WHERE lang_key = ?", $param)->num_rows();
 		if($check == 0){
@@ -231,18 +230,18 @@ function lang($param = ''){
 	} else {
 		$key = $lang_key->lang_value;
 	}
-	
+
 	return $key;
 }
 
 function admin_sl(){
 
     $ci=& get_instance();
-	
+
 	foreach(site_languages(true) as $language){
 		$all_lang[$language->lang_code] = $language;
 	}
-	
+
 	if(sizeof($all_lang) > 1){
 		$main['name'] = $all_lang[ADMIN_SL]->name;
 		$main['lang_code'] = $all_lang[ADMIN_SL]->lang_code;
@@ -257,7 +256,7 @@ function admin_sl(){
 				$info->link = $url.$delimiter.'admin_sl='.$info->lang_code;
 				$out .= '<div class="pull-left m-r"><i class="flag flag-muted flag-'.$info->lang_code.'"></i> <a href="'.$info->link.'" class="text-muted">'.$info->name.'</a></div>';
 			}
-		}		
+		}
 		return $out;
 	} else {
 		return false;
@@ -271,7 +270,7 @@ function descr_sl(){
 	foreach(site_languages(true) as $language){
 		$all_lang[$language->lang_code] = $language;
 	}
-	
+
 	if(sizeof($all_lang) > 1){
 		$main['name'] = $all_lang[DESCR_SL]->name;
 		$main['lang_code'] = $all_lang[DESCR_SL]->lang_code;
@@ -296,7 +295,7 @@ function descr_sl(){
 function site_languages($onlyActive = false){
 
     $ci=& get_instance();
-    
+
     if($onlyActive == true){
     	$query = $ci->db->query("SELECT * FROM ".$ci->db->dbprefix('languages')." WHERE status = ?", 'A')->result();
     } else {
@@ -312,7 +311,7 @@ function f_redir($url, $message = array(), $meta_redirect = false, $delay = 0, $
 	if($error == TRUE){
 		$ci->session->set_flashdata(array('error' => 1));
 	}
-		
+
 	if(sizeof($message) > 0){
 		$ci->session->set_flashdata(array('message' => $message));
 	}
@@ -334,7 +333,7 @@ function f_redir($url, $message = array(), $meta_redirect = false, $delay = 0, $
 		echo('<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />');
 		echo('<meta http-equiv="Refresh" content="' . $delay . ';URL=' . htmlspecialchars($url) . '" />');
 	}
-	
+
 	f_flush();
 	exit;
 }
@@ -389,14 +388,14 @@ function txtFirstUpper($metin,$kod='UTF-8'){
    $bas = mb_substr(txtUpper($mtn,$kod),0,1);
    $son = mb_substr(txtLower($mtn,$kod),1);
    return $bas.$son;
-} 
+}
 
 // Kelime buyuk
 function txtWordUpper($metin,$kod='UTF-8'){
    $mtn = explode(' ',$metin);
    foreach($mtn as $no => $klm) if($klm) $snc[] = txtFirstUpper($klm,$kod);
    if(is_array($snc)) return implode(' ',$snc);
-} 
+}
 
 /*
 Belirtilen dizine, belirtilen ozelliklerde medya upload eder.
@@ -416,7 +415,7 @@ $onlyImage	: yalnizca resim yuklemesi icinse
 function myUpload($name, $tmp_name, $type, $size, $new_name, $target, $watermark, $width=600, $height=600, $resize=true, $onlyImage=false){
 
     $ci=& get_instance();
-	
+
 	myMkdir(ROOTPATH . $target);
 
 	$image_types = array(
@@ -426,14 +425,14 @@ function myUpload($name, $tmp_name, $type, $size, $new_name, $target, $watermark
 		'image/png',
 		'image/gif'
 	);
-	
+
 	$document_types = array(
 		'application/msword',
 		'application/pdf',
-		'application/excel', 
-		'application/vnd.ms-excel', 
+		'application/excel',
+		'application/vnd.ms-excel',
 		'application/msexcel',
-		'application/powerpoint', 
+		'application/powerpoint',
 		'application/vnd.ms-powerpoint',
 		'application/x-shockwave-flash',
 		'text/html',
@@ -443,16 +442,16 @@ function myUpload($name, $tmp_name, $type, $size, $new_name, $target, $watermark
 		'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
 		'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
 	);
-	
+
 	if(in_array($type, $image_types) || @in_array($type, $document_types) && $onlyImage == false){
 		move_uploaded_file($tmp_name, ROOTPATH . $target . $name);
 	}
-	
+
 	if(in_array($type, $image_types))
 	{
 		$ci->load->library('upload');
 		$handle = new Upload(ROOTPATH . $target . $name);
-		
+
 		$handle->image_resize            	 = $resize;
 
 		if($handle->image_resize){
@@ -460,11 +459,11 @@ function myUpload($name, $tmp_name, $type, $size, $new_name, $target, $watermark
 			$handle->image_y                 = $height;
 			$handle->image_ratio_crop		 = true;
 		}
-		
+
 		if($type != 'image/png' && $type != 'image/x-png' && $type != 'image/gif'){
 			$handle->image_convert 			 = 'jpg';
 		}
-		
+
 		$handle->file_auto_rename 		 = false;
 		$handle->file_new_name_body      = $new_name;
 
@@ -472,7 +471,7 @@ function myUpload($name, $tmp_name, $type, $size, $new_name, $target, $watermark
 		    $handle->image_text           	 = $watermark;
 			$handle->image_text_position   	 = 'BR';
 			$handle->image_text_padding_x 	 = 10;
-			$handle->image_text_padding_y 	 = 10;	
+			$handle->image_text_padding_y 	 = 10;
 			$handle->image_text_percent    	 = 50;
 		    $handle->image_text_color        = '#FFFFFF';
 			$handle->image_text_font         = 2;
@@ -488,12 +487,12 @@ function myUpload($name, $tmp_name, $type, $size, $new_name, $target, $watermark
 }
 
 function create_seo_name($value, $database, $id = '', $column = '', $index = 0, $seo_arr = array()){
-    
+
     $ci=& get_instance();
-    
+
 	if(!empty($id)){
 		$query = $ci->db->query("SELECT seo_link FROM ".$ci->db->dbprefix($database)." WHERE {$column} = ? AND seo_link = ? AND lang_code = ?", array($id, seo($value), DESCR_SL))->row();
-		
+
 		if($query->seo_link){
 			return $query->seo_link;
 		} else {
@@ -504,7 +503,7 @@ function create_seo_name($value, $database, $id = '', $column = '', $index = 0, 
 		$val = isset($index) && $index > 0 ? $value.'-'.$index : $value;
 		$exist = $ci->db->query("SELECT seo_link FROM ".$ci->db->dbprefix($database)." WHERE seo_link = ? AND lang_code = ?", array($val, DESCR_SL));
 		if($exist->num_rows() > 0){
-			if(!in_array(md5($val), $seo_arr)){ 
+			if(!in_array(md5($val), $seo_arr)){
 				$seo_arr[] = md5($val);
 	            return create_seo_name($value, $database, $id, '', $exist->num_rows(), $seo_arr);
 	       } else  {
@@ -516,7 +515,7 @@ function create_seo_name($value, $database, $id = '', $column = '', $index = 0, 
 	}
 }
 
-function pagenav($total,$page,$perpage,$url) 
+function pagenav($total,$page,$perpage,$url)
 {
 
 	$ci=& get_instance();
@@ -529,11 +528,11 @@ function pagenav($total,$page,$perpage,$url)
 	$rlimit = $total_pages;
 	$window = 3;
 	$html = '';
-	if ($page<1 || !$page) 
+	if ($page<1 || !$page)
 	{
 		$page=1;
 	}
-	
+
 	if(($page - floor($window/2)) <= 0)
 	{
 		$llimit = 1;
@@ -548,7 +547,7 @@ function pagenav($total,$page,$perpage,$url)
 	}
 	else
 	{
-		if(($page + floor($window/2)) > $total_pages) 
+		if(($page + floor($window/2)) > $total_pages)
 		{
 			if ($total_pages - $window < 0)
 			{
@@ -566,9 +565,9 @@ function pagenav($total,$page,$perpage,$url)
 			$rlimit = $page + floor($window/2);
 		}
 	}
-	
+
 	$out = '<ul class="pagination pagination-sm m-t-none m-b-none">';
-	
+
 	if ($page>1)
 	{
 		$out .= '<li><a href="'.$url.$symb.'page='.($page-1).'"><i class="fa fa-chevron-left"></i></a></li>';
@@ -577,33 +576,33 @@ function pagenav($total,$page,$perpage,$url)
 		if($page > 3){
 			$out .= '<li><a href="'.$url.$symb.'page=1">1</a></li>';
 			$arr_count++;
-			
+
 			$out .= '<li><a href="#">...</a></li>';
 			$arr_count++;
 		}
 	}
 
-	for ($x=$llimit;$x <= $rlimit;$x++) 
+	for ($x=$llimit;$x <= $rlimit;$x++)
 	{
 		$active = ($ci->input->get('page') && $ci->input->get('page') == $x) || (!$ci->input->get('page') && 1 == $x) ? 'active' : 'inactive';
 		$out .= '<li class="'.$active.'"><a href="'.$url.$symb.'page='.($x).'">'.$x.'</a></li>';
 		$arr_count++;
 	}
-	
+
 	if($page < $total_pages)
 	{
 		if($page < $total_pages - 2){
 		$out .= '<li><a href="#">...</a></li>';
 		$arr_count++;
-		
+
 		$out .= '<li><a href="'.$url.$symb.'page='.($total_pages).'">'.$total_pages.'</a></li>';
 		$arr_count++;
 		}
-		
+
 		$out .= '<li><a href="'.$url.$symb.'page='.($page+1).'"><i class="fa fa-chevron-right"></i></a></li>';
 		$arr_count++;
 	}
-	
+
 	return $out;
 }
 
@@ -661,7 +660,7 @@ function seo($value)
 	$special_chars2[] = 'o';
 	$special_chars2[] = 'u';
 	$special_chars2[] = 'O';
-	$special_chars2[] = 'U';	
+	$special_chars2[] = 'U';
 	$special_chars2[] = 'Ae';
 	$special_chars2[] = 'Ue';
 	$special_chars2[] = 'ae';
@@ -693,7 +692,7 @@ function seo($value)
 	$value = str_replace($special_chars,$special_chars2,$value);
 	$value = strtolower($value);
 	$value = preg_replace('/[^0-9A-Za-z-\/]/',"",$value);
-	
+
 	return $value;
 }
 
@@ -730,18 +729,18 @@ function seo_upper_en($value)
 	$value = trim($value);
 	$value = str_replace($special_chars,$special_chars2,$value);
 	$value = preg_replace('/[^0-9A-Za-z-]/',"",$value);
-	
+
 	return $value;
 }
 
 function update_lastactive()
 {
     $ci=& get_instance();
-	
+
 	if($ci->session->userdata('user_id'))
 	{
 		$user = $ci->db->query("SELECT ugroup, status FROM ".$ci->db->dbprefix('users')." WHERE id = ? LIMIT 1", $ci->session->userdata('user_id'))->row();
-		
+
 		if($user->status == 'B'){
 			$ci->session->sess_destroy();
 		} else {
@@ -761,37 +760,37 @@ function nicetime($unix_date)
     if(empty($unix_date)) {
         return "Belirsiz bir tarih";
     }
-    
+
     $periods         = array("saniye", "dakika", "saat", "gün", "hafta", "ay", "yıl", "on 10");
     $lengths         = array("60","60","24","7","4.35","12","10");
-    
+
     $now             = time();
-    
+
     // check validity of date
-    if(empty($unix_date)) {    
+    if(empty($unix_date)) {
         return "Belirsiz bir tarih";
     }
-	
+
     // is it future date or past date
-    if($now > $unix_date) {    
+    if($now > $unix_date) {
         $difference     = $now - $unix_date;
         $tense         = "önce";
-        
+
     } else {
         $difference     = $unix_date - $now;
         $tense         = "kaldı";
     }
-    
+
     for($j = 0; $difference >= $lengths[$j] && $j < count($lengths)-1; $j++) {
         $difference /= $lengths[$j];
     }
-    
+
     $difference = round($difference);
-    
+
     if($difference != 1) {
         //$periods[$j].= "s";
     }
-    
+
     return "$difference $periods[$j] {$tense}" == '0 saniye kaldı' ? '1 saniye önce' : "$difference $periods[$j] {$tense}";
 }
 
@@ -809,7 +808,7 @@ function check_perm($action, $returnType = FALSE)
 		$ci->session->set_userdata(array('ref' => current_url()));
 		f_redir(base_url('backend/users/login'));
 	}
-	
+
 	$query = $ci->db->query("SELECT perm FROM ".$ci->db->dbprefix('users_permissions')." WHERE ugroup = ?", $ci->session->userdata('user_group'))->row();
 	$elements = explode(",", $query->perm);
 	$return = $query->perm != "All" && !in_array($action, $elements) ? FALSE : TRUE;
@@ -838,12 +837,12 @@ function extstres($content, $start, $end)
 
 function user_info($type='', $userId=''){
 	if(empty($type) || empty($userId)) return false;
-	
+
     $ci=& get_instance();
-    
+
     $query = $ci->db->select($type)->from('users')->where('id', $userId)->limit(1)->get()->row();
     return !empty($query->$type) ? $query->$type : false;
-    
+
 }
 
  /************************************************
@@ -852,24 +851,24 @@ function user_info($type='', $userId=''){
  * R $return: istenen kolon (select)
  * R $from: istenen tablo
  * O $lang_code: dil kodu
- * 
+ *
  * super_query('id', 1, 'title', 'contents_categories', 'tr');
- * contents_categories tablosunda, tr dilinde, id 1 olan select edilip, 
+ * contents_categories tablosunda, tr dilinde, id 1 olan select edilip,
  * titlesi return oluyor
  *************************************************/
 function super_query($select = '', $value = '', $return = '', $from = '', $lang_code = ''){
 	if(empty($select) || empty($value) || empty($return) || empty($from)) return false;
-	
+
     $ci=& get_instance();
-    
+
     $ci->db->select($return)->where($select, $value);
-    
+
     if($lang_code){
 	    $ci->db->where('lang_code', $lang_code);
     }
 
     $query = $ci->db->from($from)->limit(1)->get()->row();
-    
+
     return $query->$return;
 }
 
@@ -888,7 +887,7 @@ function truncate($data, $length){
 function captcha($param)
 {
     $ci=& get_instance();
-	
+
     $sayi1 = rand(1,5); // 1 ile 5 arasında rastgele bir sayı
     $sayi2 = rand(1,5); // 1 ile 5 arasında rastgele bir sayı
 
@@ -906,15 +905,15 @@ function myMkdir( $dir = false )
 {
 	if ( !$dir )
         return false;
-    
+
     $dir = str_replace(ROOTPATH, '', $dir);
     $dirs = explode('/', $dir);
     $directory = ROOTPATH;
-    
+
     foreach ( $dirs as $next )
     {
         $directory .= $next . '/';
-        
+
         if ( is_dir($directory) )
         {
             if ( !is_writable($directory) )
@@ -945,18 +944,18 @@ function deleteDirectory( $dirname = false, $passive = false )
     {
         $dir_handle = opendir($dirname);
     }
-    
+
     if ( !$dir_handle )
     {
         return false;
     }
-    
+
     // passive mode
     if ( $passive )
     {
         $empty = true;
         $file = readdir($dir_handle);
-        
+
         while( $file = readdir($dir_handle) )
         {
             if ( $file != "." && $file != ".." )
@@ -964,16 +963,16 @@ function deleteDirectory( $dirname = false, $passive = false )
                 $empty = false;
             }
         }
-        
+
         if ( $empty )
         {
             rmdir($dirname);
         }
-        
+
         return true;
         exit;
     }
-    
+
     while( $file = readdir($dir_handle) )
     {
         if ( $file != "." && $file != ".." )
@@ -988,10 +987,10 @@ function deleteDirectory( $dirname = false, $passive = false )
             }
         }
     }
-    
+
     closedir($dir_handle);
     rmdir($dirname);
-    
+
     return true;
 }
 
@@ -1022,7 +1021,7 @@ function delete_trash()
 
 function delete_photo($module, $module_id)
 {
-	
+
 	$ci=& get_instance();
 
 	$photos = $ci->db->from('photos')->where(array('module_name' => $module, 'module_id' => $module_id))->get()->result();
@@ -1037,12 +1036,12 @@ function delete_photo($module, $module_id)
 				}
 			}
 		}
-		@unlink(ROOTPATH . $photo->original);		
+		@unlink(ROOTPATH . $photo->original);
 		$ci->db->query("DELETE FROM ".$ci->db->dbprefix('photos')." WHERE id = ? LIMIT 1", $photo->id);
-		
+
         $del_dir = explode('/', $photo->original);
         array_pop($del_dir);
-        
+
         deleteDirectory(implode('/', $del_dir) . '/', true);
 	}
 }
@@ -1092,7 +1091,7 @@ function module_name($name = '')
 		'contents_categories' => lang('CONTENTS_CATEGORIES'),
 		'users' => lang('USERS')
 	);
-	
+
 	return !empty($name) ? $modules[$name] : $modules;
 }
 
@@ -1107,14 +1106,14 @@ function module_name($name = '')
 function getSupElements($catId, $lang_code = '', $db_column, $type='parent_id', $found = array()) {
 
     $ci=& get_instance();
-	
+
 	if($catId > 0){
     	array_push ($found, $catId);
 	}
 
 	if($lang_code) $ci->db->where('lang_code', $lang_code);
 	$result = $ci->db->select($type)->from($db_column)->where('id', $catId)->get()->result();
-    
+
     if(sizeof($result) > 0){
         foreach($result as $row){
             $found = getSupElements($row->$type, $lang_code, $db_column, $type, $found);
@@ -1134,29 +1133,29 @@ function getSupElements($catId, $lang_code = '', $db_column, $type='parent_id', 
 function getSubElements($catId, $lang_code = '', $db_column, $type='id', $found = array()) {
 
     $ci=& get_instance();
-    	
+
 	if($catId > 0){
     	array_push ($found, $catId);
 	}
-	
+
 	if($lang_code) $ci->db->where('lang_code', $lang_code);
 	$result = $ci->db->select($type)->from($db_column)->where('parent_id', $catId)->get()->result();
-	
+
 	$result = empty($result) ? "empty" : $result;
-	
+
     if(sizeof($result) > 0 && $result != 'empty'){
         foreach($result as $row){
 			$found = getSubElements($row->$type, $lang_code, $db_column, $type, $found);
         }
     }
-    
+
     return $found;
 }
 
 function parse_menu_link_value($link_type, $link_value, $lang_code = ''){
 
 	$ci=& get_instance();
-	
+
 	if(($link_type == 'contents' || $link_type == 'contents_categories') && is_numeric($link_value)){
 		if($lang_code){
 			$ci->db->where('lang_code', $lang_code);
@@ -1171,12 +1170,12 @@ function parse_menu_link_value($link_type, $link_value, $lang_code = ''){
 function gettag($object_type, $object_id, $lang_code = ''){
 
 	$ci=& get_instance();
-	
+
 	if(empty($object_type) || empty($object_id)) return false;
-		
+
 	if($lang_code)
 	$ci->db->where('lang_code', $lang_code);
-	
+
 	$tags = $ci->db
 	->select('tags.name')
 	->from('tags_relations')
@@ -1188,7 +1187,7 @@ function gettag($object_type, $object_id, $lang_code = ''){
 		)
 	)
 	->get()->result();
-	
+
 	if(!empty($tags)){
 		foreach($tags as $tag){
 			$tags_array[] = $tag->name;
@@ -1204,7 +1203,7 @@ function nicetotaltime($time, $showzero = true)
 	$hour = 1 * gmdate("H", $time);
 	$minute = 1 * gmdate("i", $time);
 	$second = 1 * gmdate("s", $time);
-	
+
 	if($showzero == true){
 		return $day . ' ' . lang('DAY_S') . ' ' . $hour . ' ' . lang('HOUR_S') . ' ' . $minute . ' ' . lang('MINUTE_S') . ' ' . $second . ' ' . lang('SECOND_S');
 	} else {
@@ -1218,9 +1217,9 @@ function nicetotaltime($time, $showzero = true)
 
 function category_info($type = '', $id = '', $column = '', $lang_code = ''){
 	if(empty($type) || empty($id)) return false;
-	
+
     $ci=& get_instance();
-        
+
     if(!empty($column)){
     	$ci->db->select($column);
     }
@@ -1228,44 +1227,44 @@ function category_info($type = '', $id = '', $column = '', $lang_code = ''){
     if(!empty($lang_code)){
     	$ci->db->where('lang_code', $lang_code);
     }
-    
+
     if(!empty($id)){
     	$ci->db->where($type, $id);
-    }    
+    }
 
     $query = $ci->db->from('contents_categories')->limit(1)->get()->row();
-    
+
     if(empty($query)){
     	return false;
     }
-    
+
     return empty($column) ? $query : $query->$column;
 }
 
 function prefix_array_key($prefix = '', $array = array())
 {
 	if(empty($prefix) || empty($array)) return false;
-	
+
 	$out = array();
-	
+
 	foreach ($array as $key => $val) {
 	    $out[$prefix . $key] = $val;
 	}
-	
+
 	return (object)$out;
 }
 
 function is_teacher($user_id = NULL)
 {
 	$ci=& get_instance();
-	
+
 	$teacher_group = array(3,4,5);
-	
+
 	if($user_id == NULL)
 	{
 		if(!$ci->session->userdata('user_id')) return false;
 		if($ci->session->userdata('user_id') && in_array($ci->session->userdata('user_ugroup'), $teacher_group)) return true;
-		
+
 		return false;
 	} else {
 		$user = $ci->db->select('ugroup')->from('users')->where('id', $user_id)->get()->row();
@@ -1276,18 +1275,18 @@ function is_teacher($user_id = NULL)
 function is_student($user_id = NULL)
 {
 	$ci=& get_instance();
-	
+
 	$student_group = array(2);
 
 	if($user_id == NULL)
-	{	
+	{
 		if(!$ci->session->userdata('user_id')) return false;
-		if($ci->session->userdata('user_id') && in_array($ci->session->userdata('user_ugroup'), $student_group)) return true;	
+		if($ci->session->userdata('user_id') && in_array($ci->session->userdata('user_ugroup'), $student_group)) return true;
 		return false;
 	} else {
 		$user = $ci->db->select('ugroup')->from('users')->where('id', $user_id)->get()->row();
-		return in_array($user->ugroup, $student_group) ? true : false;		
-	}	
+		return in_array($user->ugroup, $student_group) ? true : false;
+	}
 }
 
 function do_post_request($url, $data, $optional_headers = null,$getresponse = false) {
@@ -1342,13 +1341,13 @@ function getip(){
 	 		$ips = explode(',', $_SERVER["HTTP_X_FORWARDED_FOR"]);
 	 		return trim($ips[0]);
  		} else {
-        	return  $_SERVER["HTTP_X_FORWARDED_FOR"];  
+        	return  $_SERVER["HTTP_X_FORWARDED_FOR"];
         }
-    }else if (array_key_exists('REMOTE_ADDR', $_SERVER)) { 
-        return $_SERVER["REMOTE_ADDR"]; 
+    }else if (array_key_exists('REMOTE_ADDR', $_SERVER)) {
+        return $_SERVER["REMOTE_ADDR"];
     }else if (array_key_exists('HTTP_CLIENT_IP', $_SERVER)) {
-        return $_SERVER["HTTP_CLIENT_IP"]; 
-    } 
+        return $_SERVER["HTTP_CLIENT_IP"];
+    }
 
     return '';
 }
@@ -1363,18 +1362,18 @@ function menu_data()
 			'childrens' => array(
 				array(
 					'name' 			=> lang('OVERVIEW'),
-					'link' 			=> base_url('backend/requests'),						
+					'link' 			=> base_url('backend/requests'),
 					'permission' 	=> 'requests_overview'
 				), array(
 					'name' 			=> 'Yeni Talep',
-					'link' 			=> base_url('backend/requests/add'),						
+					'link' 			=> base_url('backend/requests/add'),
 					'permission' 	=> 'requests_add'
 				), array(
 					'name' 			=> 'Finansal Hareketler',
-					'link' 			=> base_url('backend/requests/payments'),						
+					'link' 			=> base_url('backend/requests/payments'),
 					'permission' 	=> 'requests_payments'
 				)
-			)			
+			)
 		),
 		array(
 			'name' 			=> '<i class="i i-study icon"></i> ' . lang('LESSONS'),
@@ -1383,14 +1382,14 @@ function menu_data()
 			'childrens' => array(
 				array(
 					'name' 			=> lang('OVERVIEW'),
-					'link' 			=> base_url('backend/lessons'),						
+					'link' 			=> base_url('backend/lessons'),
 					'permission' 	=> 'lessons_overview'
 				), array(
 					'name' 			=> lang('LESSONS_CATEGORIES'),
-					'link' 			=> base_url('backend/lessons/categories'),						
+					'link' 			=> base_url('backend/lessons/categories'),
 					'permission' 	=> 'lessons_overview'
 				)
-			)			
+			)
 		),
 		array(
 			'name' 			=> '<i class="i i-stack2 icon"></i> ' . lang('CONTENTS'),
@@ -1399,19 +1398,19 @@ function menu_data()
 			'childrens' => array(
 				array(
 					'name' 			=> lang('OVERVIEW'),
-					'link' 			=> base_url('backend/contents'),						
+					'link' 			=> base_url('backend/contents'),
 					'permission' 	=> 'contents_overview'
 				), array(
 					'name' 			=> lang('CONTENTS_CATEGORIES'),
-					'link' 			=> base_url('backend/contents/categories'),						
+					'link' 			=> base_url('backend/contents/categories'),
 					'permission' 	=> 'contents_overview'
 				), array(
 					'name' 			=> lang('CONTENTS_WORDS'),
-					'link' 			=> base_url('backend/contents/words'),						
+					'link' 			=> base_url('backend/contents/words'),
 					'permission' 	=> 'contents_overview'
 				)
-			)			
-		),		
+			)
+		),
 		array(
 			'name' 			=> '<i class="i i-menu2 icon"></i> ' . lang('MENUS'),
 			'link' 			=> base_url('backend/menus'),
@@ -1421,7 +1420,7 @@ function menu_data()
 			'name' 			=> '<i class="i i-mail icon"></i> ' . lang('FORMS'),
 			'link' 			=> base_url('backend/forms'),
 			'permission' 	=> 'forms_overview'
-		),		
+		),
 		array(
 			'name' 			=> '<i class="i i-user2 icon"></i> ' . lang('USERS'),
 			'link' 			=> base_url('backend/users'),
@@ -1429,51 +1428,51 @@ function menu_data()
 			'childrens' => array(
 				array(
 					'name' 			=> lang('USERS_OVERVIEW'),
-					'link' 			=> base_url('backend/users'),						
+					'link' 			=> base_url('backend/users'),
 					'permission' 	=> 'users_overview'
 				), array(
 					'name' 			=> lang('USERS_NEW'),
-					'link' 			=> base_url('backend/users/add'),						
+					'link' 			=> base_url('backend/users/add'),
 					'permission' 	=> 'users_add'
 				), array(
 					'name' 			=> lang('USERS_GROUPS'),
-					'link' 			=> base_url('backend/users/groups'),						
+					'link' 			=> base_url('backend/users/groups'),
 					'permission' 	=> 'users_overview'
 				), array(
 					'name' 			=> 'Onay Bekleyen Fotoğraflar',
-					'link' 			=> base_url('backend/users/pendingphotos'),						
+					'link' 			=> base_url('backend/users/pendingphotos'),
 					'permission' 	=> 'users_overview'
 				), array(
 					'name' 			=> 'Kullanıcı Mesajları',
-					'link' 			=> base_url('backend/users/messages'),						
+					'link' 			=> base_url('backend/users/messages'),
 					'permission' 	=> 'users_overview'
 				), array(
 					'name' 			=> 'Kullanıcı Yorumları',
-					'link' 			=> base_url('backend/users/comments'),						
+					'link' 			=> base_url('backend/users/comments'),
 					'permission' 	=> 'users_overview'
 				), array(
 					'name' 			=> lang('USERS_POINTS'),
-					'link' 			=> base_url('backend/users/points'),						
+					'link' 			=> base_url('backend/users/points'),
 					'permission' 	=> 'users_overview'
 				), array(
 					'name' 			=> lang('USERS_ACTIVITIES'),
-					'link' 			=> base_url('backend/users/activities'),						
+					'link' 			=> base_url('backend/users/activities'),
 					'permission' 	=> 'users_overview'
 				), array(
 					'name' 			=> 'Telefonları Kontrol Et',
-					'link' 			=> base_url('backend/users/phonescheck'),						
+					'link' 			=> base_url('backend/users/phonescheck'),
 					'permission' 	=> 'users_overview'
 				), array(
 					'name' 			=> 'Ders Tanıtım Yazıları',
-					'link' 			=> base_url('backend/users/prices_text'),						
+					'link' 			=> base_url('backend/users/prices_text'),
 					'permission' 	=> 'users_overview'
 				), array(
 					'name' 			=> 'Eğitmen Haritası',
-					'link' 			=> base_url('backend/users/teachers'),						
+					'link' 			=> base_url('backend/users/teachers'),
 					'permission' 	=> 'users_overview'
 				), array(
 					'name' 			=> 'Kullanıcı Fotoğrafları',
-					'link' 			=> base_url('backend/users/showphotos'),						
+					'link' 			=> base_url('backend/users/showphotos'),
 					'permission' 	=> 'users_overview'
 				)
 			)
@@ -1485,27 +1484,27 @@ function menu_data()
 			'childrens' => array(
 				array(
 					'name' 			=> lang('SETTINGS_GLOBAL'),
-					'link' 			=> base_url('backend/settings'),						
+					'link' 			=> base_url('backend/settings'),
 					'permission' 	=> 'settings_global_overview'
 				), array(
 					'name' 			=> lang('SETTINGS_SITE'),
-					'link' 			=> base_url('backend/settings/site'),						
+					'link' 			=> base_url('backend/settings/site'),
 					'permission' 	=> 'settings_site_overview'
 				), array(
 					'name' 			=> lang('SETTINGS_WATERMARK'),
-					'link' 			=> base_url('backend/settings/watermark'),						
+					'link' 			=> base_url('backend/settings/watermark'),
 					'permission' 	=> 'settings_watermark_overview'
 				), array(
 					'name' 			=> lang('TRASH'),
-					'link' 			=> base_url('backend/settings/trash'),						
+					'link' 			=> base_url('backend/settings/trash'),
 					'permission' 	=> 'settings_trash_overview'
 				), array(
 					'name' 			=> 'Ücretler',
-					'link' 			=> base_url('backend/settings/prices'),						
+					'link' 			=> base_url('backend/settings/prices'),
 					'permission' 	=> 'settings_prices_overview'
 				), array(
 					'name' 			=> 'Arama Terimleri',
-					'link' 			=> base_url('backend/settings/search'),						
+					'link' 			=> base_url('backend/settings/search'),
 					'permission' 	=> 'settings_search_overview'
 				)
 			)
@@ -1517,23 +1516,23 @@ function menu_data()
 			'childrens' => array(
 				array(
 					'name' 			=> lang('OVERVIEW'),
-					'link' 			=> base_url('backend/languages'),						
+					'link' 			=> base_url('backend/languages'),
 					'permission' 	=> 'languages_overview'
 				), array(
 					'name' 			=> lang('LANGUAGES_IMPORT'),
-					'link' 			=> base_url('backend/languages/import'),						
+					'link' 			=> base_url('backend/languages/import'),
 					'permission' 	=> 'languages_import'
 				), array(
 					'name' 			=> lang('LANGUAGES_PHRASES'),
-					'link' 			=> base_url('backend/languages/editphrases'),						
+					'link' 			=> base_url('backend/languages/editphrases'),
 					'permission' 	=> 'languages_phrases'
 				), array(
 					'name' 			=> lang('LANGUAGES_NEW_PHRASE'),
-					'link' 			=> base_url('backend/languages/addphrase'),						
+					'link' 			=> base_url('backend/languages/addphrase'),
 					'permission' 	=> 'languages_phrases'
 				), array(
 					'name' 			=> lang('LANGUAGES_EDIT_EMPTY_PHRASES'),
-					'link' 			=> base_url('backend/languages/editemptyphrases'),						
+					'link' 			=> base_url('backend/languages/editemptyphrases'),
 					'permission' 	=> 'languages_phrases'
 				)
 			)
@@ -1544,16 +1543,16 @@ function menu_data()
 			'permission' 	=> 'sliders_overview'
 		)
 	);
-	
+
 	return $data;
 }
 
 function get_menu($type = '')
 {
 	$ci=& get_instance();
-	
+
 	$out = '';
-	
+
 	foreach(menu_data() as $menu)
 	{
 		if(check_perm($menu['permission'], TRUE) == TRUE)
@@ -1581,7 +1580,7 @@ function get_menu($type = '')
 			$out .= empty($closeli) ? '</li>'.PHP_EOL : '';
 		}
 	}
-	
+
 	return $out;
 }
 
@@ -1595,26 +1594,26 @@ function point($param)
 		'doping' 	=> 8,
 		'student' 	=> 1
 	);
-	
+
 	return $points[$param];
 }
 
 function unique_string($db = '', $column = '', $length = 8, $type = 'numeric')
-{    
+{
     $ci=& get_instance();
-        
+
 	$ci->load->helper('string');
 	$random_string = random_string($type, $length);
-	
+
 	if(!empty($db) && !empty($column))
 	{
 		$check = $ci->db->select($column)->from($db)->where($column, $random_string)->get()->row();
 	}
-	
+
 	if(!empty($db) && !empty($column) && !empty($check)){
-		random_str($db, $column, $lenght, $type);			
+		random_str($db, $column, $lenght, $type);
 	}
-	
+
 	return $random_string;
 }
 
@@ -1629,16 +1628,16 @@ function education_types($type = ''){
 				5 => 'Diğer'
 			);
 		break;
-		
+
 		case 2:
 			return array(
 				1 => 'Hafta içi gündüz',
 				2 => 'Hafta içi akşam',
 				3 => 'Haftasonu gündüz',
 				4 => 'Haftasonu akşam'
-			);		
+			);
 		break;
-		
+
 		case 3:
 			return array(
 				1 => 'Ödev Yardımı',
@@ -1646,22 +1645,22 @@ function education_types($type = ''){
 				3 => 'Proje Yardımı',
 				4 => 'Eğitim Koçluğu',
 				5 => 'Yaşam Koçluğu'
-			);		
-		break;		
-		
+			);
+		break;
+
 		case 4:
 			return array(
 				1 => 'Erkek',
 				2 => 'Kadın'
-			);		
-		break;	
-		
+			);
+		break;
+
 		case 5:
 			return array(
 				1 => 'Birebir Ders',
 				2 => 'Grup Dersi'
-			);		
-		break;						
+			);
+		break;
 	}
 }
 
@@ -1674,9 +1673,9 @@ function send_sms($number, $message)
 			<nums>'.str_replace(' ', '', $number).'</nums>
 		</mesaj>
 	</smspack>';
-	
+
 	$ch = curl_init();
-	
+
 	curl_setopt($ch, CURLOPT_URL,"https://smsgw.mutlucell.com/smsgw-ws/sndblkex");
 	curl_setopt($ch, CURLOPT_POST, 1);
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $xml);
@@ -1687,7 +1686,7 @@ function send_sms($number, $message)
 
 //price format
 function format_price($price)
-{	
+{
 	return number_format($price, 2, '.', '');
 }
 ?>

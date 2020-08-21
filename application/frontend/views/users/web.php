@@ -1,7 +1,7 @@
 <form  action="<?=site_url('users/web')?>" method="post" class="ajax-form js-dont-reset">
-	<div class="panel panel-default margin-bottom-20">
-		<div class="panel-heading"><h4>Özel Web Sayfası Ayarları</h4></div>
-		<div class="panel-body">
+	<div class="card box-shadow mb-4">
+		<div class="card-header"><h4>Özel Web Sayfası Ayarları</h4></div>
+		<div class="card-body">
 			<div class="row">	
 							
 				<div class="col-md-12">
@@ -21,8 +21,8 @@
 				</div>
 				
 				<div class="col-md-12">
-					<button type="submit" class="btn btn-orange js-submit-btn">Güncelle</button>
-					<button disabled="disabled" class="btn btn-orange hide js-loader"><i class="fa fa-spinner fa-pulse fa-fw"></i> Lütfen bekleyiniz...</button>
+					<button type="submit" class="btn btn-primary js-submit-btn">Güncelle</button>
+					<button disabled="disabled" class="btn btn-orange d-none js-loader"><img class="align-middle" src="<?=base_url('public/img/spin.svg')?>" width="13" height="13" /> Lütfen bekleyiniz...</button>
 				</div>								
 			</div>
 		</div>

@@ -59,7 +59,7 @@
 						</table>
 					</div>
 					<button type="submit" class="btn btn-orange btn-lg pull-right margin-top-20 js-submit-btn"><?if(empty($payment_form)):?><i class="fa fa-gift"></i> Devam<?else:?><i class="fa fa-credit-card"></i> Ödeme yap<?endif;?></button>
-					<button disabled="disabled" class="btn btn-orange btn-lg pull-right margin-top-20 hide js-loader"><i class="fa fa-spinner fa-pulse fa-fw"></i> Lütfen bekleyiniz...</button>
+					<button disabled="disabled" class="btn btn-orange btn-lg pull-right margin-top-20 hide js-loader"><img class="align-middle" src="<?=base_url('public/img/spin.svg')?>" width="13" height="13" /> Lütfen bekleyiniz...</button>
 					<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />						
 					</form>
 					

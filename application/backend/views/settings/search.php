@@ -9,7 +9,7 @@
 	<header class="panel-heading bg-light">
 		Yeni Arama Terimi
 	</header>
-	<div class="panel-body">
+	<div class="card-body">
 			<div class="row">
 								
 				<div class="col-md-3">
@@ -47,7 +47,7 @@
 	<header class="panel-heading bg-light">
 		Arama Terimleri
 	</header>
-	<div class="panel-body">
+	<div class="card-body">
 			<div class="row">
 				<?foreach($items as $item):?>
 				<div class="col-md-3">

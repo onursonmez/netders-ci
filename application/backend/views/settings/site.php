@@ -8,7 +8,7 @@
     <?endforeach;?>
   </ul>
 </header>
-<div class="panel-body">
+<div class="card-body">
   <form method="post" action="<?=base_url('backend/settings/site')?>" class="form-horizontal" enctype="multipart/form-data">
   <div class="tab-content">
     <?foreach($languages as $lang):?>

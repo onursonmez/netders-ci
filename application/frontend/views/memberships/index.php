@@ -10,7 +10,7 @@
 						<img src="<?=base_url('public/img/amblem-starter.png')?>" width="100" class="margin-top-10 margin-bottom-10" />
 						<h4>Starter Üyelik</h4>
 					</div>
-					<div class="panel-body">
+					<div class="card-body">
 						<ul class="clear-list bordered-list">
 							<li><i class="fa fa-check fa-fw"></i> Yalnızca üye öğrenciler telefonunuzu görebilir</li>
 							<li><i class="fa fa-check fa-fw"></i> Destek merkezini kullanabilirsiniz</li>
@@ -32,7 +32,7 @@
 						<img src="<?=base_url('public/img/amblem-advanced.png')?>" width="100" class="margin-top-10 margin-bottom-10" />
 						<h4>Advanced Üyelik</h4>
 					</div>
-					<div class="panel-body">
+					<div class="card-body">
 						<ul class="clear-list bordered-list">
 							<li><i class="fa fa-check fa-fw"></i> Tüm öğrenciler telefonunuzu görebilir</li>
 							<li><i class="fa fa-check fa-fw"></i> Destek merkezini kullanabilirsiniz</li>
@@ -52,7 +52,7 @@
 						<?if(!is_buyed(array(30)) && $this->session->userdata('user_ugroup') == 3 && $this->session->userdata('user_allow_trial')):?>
 						<form method="POST" action="<?=site_url('memberships/buy')?>" class="ajax-form js-dont-reset">
 							<button type="submit" class="btn btn-wide btn-lightred js-submit-btn"><i class="fa fa-hourglass"></i> 14 gün ücretsiz dene</button>
-							<button disabled="disabled" class="btn btn-wide btn-lightred hide js-loader"><i class="fa fa-spinner fa-pulse fa-fw"></i> Lütfen bekleyiniz...</button>
+							<button disabled="disabled" class="btn btn-wide btn-lightred hide js-loader"><img class="align-middle" src="<?=base_url('public/img/spin.svg')?>" width="13" height="13" /> Lütfen bekleyiniz...</button>
 							<span class="block margin-top-10 margin-bottom-10 lightgrey-text">veya</span>
 							<input type="hidden" name="product_id" value="30" />
 							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />
@@ -66,8 +66,8 @@
 								<option value="5">6 Aylık / <?=$price[5]->price?> TL</option>
 								<option value="7">12 Aylık / <?=$price[7]->price?> TL</option>
 							</select>
-							<button type="submit" class="btn btn-wide btn-orange js-submit-btn"><i class="fa fa-shopping-cart"></i> Satın Al</button>
-							<button disabled="disabled" class="btn btn-wide btn-orange hide js-loader"><i class="fa fa-spinner fa-pulse fa-fw"></i> Lütfen bekleyiniz...</button>
+							<button type="submit" class="btn btn-primary js-submit-btn"><i class="fa fa-shopping-cart"></i> Satın Al</button>
+							<button disabled="disabled" class="btn btn-wide btn-orange d-none js-loader"><img class="align-middle" src="<?=base_url('public/img/spin.svg')?>" width="13" height="13" /> Lütfen bekleyiniz...</button>
 							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />
 						</form>
 					</div>
@@ -79,7 +79,7 @@
 						<img src="<?=base_url('public/img/amblem-premium.png')?>" width="100" class="margin-top-10 margin-bottom-10" />
 						<h4>Premium Üyelik</h4>
 					</div>					
-					<div class="panel-body">
+					<div class="card-body">
 						<ul class="clear-list bordered-list">
 							<li><i class="fa fa-check fa-fw"></i> Tüm öğrenciler telefonunuzu görebilir</li>
 							<li><i class="fa fa-check fa-fw"></i> Destek merkezini kullanabilirsiniz</li>
@@ -100,7 +100,7 @@
 						<?if(!is_buyed(array(31)) && $this->session->userdata('user_ugroup') == 3 && $this->session->userdata('user_allow_trial')):?>
 						<form method="POST" action="<?=site_url('memberships/buy')?>" class="ajax-form js-dont-reset">
 							<button type="submit" class="btn btn-wide btn-lightred js-submit-btn"><i class="fa fa-hourglass"></i> 14 gün ücretsiz dene</button>
-							<button disabled="disabled" class="btn btn-wide btn-lightred hide js-loader"><i class="fa fa-spinner fa-pulse fa-fw"></i> Lütfen bekleyiniz...</button>
+							<button disabled="disabled" class="btn btn-wide btn-lightred hide js-loader"><img class="align-middle" src="<?=base_url('public/img/spin.svg')?>" width="13" height="13" /> Lütfen bekleyiniz...</button>
 							<span class="block margin-top-10 margin-bottom-10 lightgrey-text">veya</span>
 							<input type="hidden" name="product_id" value="31" />
 							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />
@@ -114,8 +114,8 @@
 								<option value="6">6 Aylık / <?=$price[6]->price?> TL</option>
 								<option value="8">12 Aylık / <?=$price[8]->price?> TL</option>
 							</select>
-							<button type="submit" class="btn btn-wide btn-orange js-submit-btn"><i class="fa fa-shopping-cart"></i> Satın Al</button>
-							<button disabled="disabled" class="btn btn-wide btn-orange hide js-loader"><i class="fa fa-spinner fa-pulse fa-fw"></i> Lütfen bekleyiniz...</button>
+							<button type="submit" class="btn btn-primary js-submit-btn"><i class="fa fa-shopping-cart"></i> Satın Al</button>
+							<button disabled="disabled" class="btn btn-wide btn-orange d-none js-loader"><img class="align-middle" src="<?=base_url('public/img/spin.svg')?>" width="13" height="13" /> Lütfen bekleyiniz...</button>
 							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />
 						</form>
 					</div>					

@@ -11,7 +11,7 @@
   <span><a href="<?=base_url('backend/contents/addcategory')?>"><i class="fa fa-plus"></i> <?=lang('CONTENTS_CATEGORIES_NEW')?></a></span>
   
 </header>
-<div class="panel-body">
+<div class="card-body">
 
 <form method="post" action="<?=base_url('backend/contents')?><?if(strstr(uri_string(), 'add') == TRUE):?>/add<?else:?>/edit/<?=$this->uri->segment(4)?><?endif;?>" class="form-horizontal">
   <div class="tab-content">

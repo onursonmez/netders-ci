@@ -19,8 +19,8 @@
 					<img src="<?=base_url('captcha/'.generate_captcha('activation'))?>" width="100%" height="32" />
 				</div>				
 				<div class="col-md-2">
-					<button type="submit" class="btn btn-wide btn-orange js-submit-btn">Hesabımı Aktif Et</button>
-					<button disabled="disabled" class="btn btn-wide btn-orange hide js-loader"><i class="fa fa-spinner fa-pulse fa-fw"></i> Lütfen bekleyiniz...</button>
+					<button type="submit" class="btn btn-primary js-submit-btn">Hesabımı Aktif Et</button>
+					<button disabled="disabled" class="btn btn-wide btn-orange d-none js-loader"><img class="align-middle" src="<?=base_url('public/img/spin.svg')?>" width="13" height="13" /> Lütfen bekleyiniz...</button>
 				</div>								
 			</div>
 			<input type="hidden" name="form" value="activation" />

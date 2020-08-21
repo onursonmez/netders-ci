@@ -54,6 +54,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 require_once( BASEPATH .'database/DB.php' );
 $db =& DB();
 
+/*
 $users = $db->select('username, username_old, id')->from('users')->where_in('ugroup', array(3,4,5))->where_in('status', ["A", "C"])->get()->result();
 if(!empty($users)){
 	foreach($users as $user){
@@ -63,19 +64,23 @@ if(!empty($users)){
 	}
 }
 
+
 $prices_text = $db->select('id, uid, seo_link')->from('prices')->where_in('status', 'A')->get()->result();
 if(!empty($prices_text)){
 	foreach($prices_text as $text){
 		$route[$text->seo_link] = 'users/view_price/'.$text->uid.'/'.$text->id;
 	}
 }
+*/
 
 $settings_global = $db->from('settings_global')->get()->row();
 
 $categories = $db->select('category_id, seo_link, lang_code')->from('contents_categories')->where_not_in('category_id', explode(',', $settings_global->lesson_categories))->get()->result();
 
-if(!empty($categories)){
-	foreach($categories as $value){
+if(!empty($categories))
+{
+	foreach($categories as $value)
+  {
 		$route_value = $value->lang_code == $settings_global->default_language ? $value->seo_link : $value->lang_code.'/'.$value->seo_link;
 		$route[$route_value] = 'contents/index/'.$value->category_id;
 	}
@@ -114,11 +119,16 @@ $route['ogrenci-olarak-kayit-olmak-istiyorum'] = 'users/register/2';
 $route['ozel-ders-ilanlari-verenler'] = 'users/index';
 $route['ozel-ders-ilanlari-verenler/(:any)'] = 'users/index/$1';
 $route['ozel-ders-ilanlari-verenler/(:any)/(:any)'] = 'users/index/$1/$2';
-
+$route['ozel-ders-ilanlari-verenler/(:any)/(:any)'] = 'users/index/$1/$2';
 
 $route['messages/(:num)'] = 'messages/index/$1';
 $route['messages/(:any)'] = 'messages/$1';
 
+$route['api'] = 'api/index';
+$route['api/(:any)'] = 'api/$1';
 
+$route['ders-detay/(:any)'] = 'users/view_price/$1';
+
+$route['(:any)'] = 'users/view/$1';
 
 $route['translate_uri_dashes'] = FALSE;

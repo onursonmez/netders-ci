@@ -3,7 +3,7 @@
 		<?=lang('SLIDER_IMAGES')?>
 		<span class="pull-right"><a href="<?=base_url('backend/sliders/addimages/'.$this->uri->segment(4))?>"><i class="fa fa-plus"></i> <?=lang('SLIDER_NEW_IMAGE')?></a></span> 
 	</header>
-	<div class="panel-body">
+	<div class="card-body">
 		<?if(sizeof($items) > 0):?>
 		<select onchange="window.location.href=this.value">
 	        <?foreach(site_languages(true) as $language):?>

@@ -8,7 +8,7 @@
   </ul>
   <span><a href="<?=base_url('backend/sliders/images')?>/<?if(isset($item->slider_id)):?><?=$item->slider_id?><?else:?><?=$this->uri->segment(4)?><?endif;?>"><i class="fa fa-reply"></i> Geri Dön</a></span>
 </header>
-<div class="panel-body">
+<div class="card-body">
   <form autocomplete="off" method="post" action="<?=base_url('backend/'.$this->uri->segment(2))?><?if(strstr(uri_string(), 'addimages') == TRUE):?>/addimages<?else:?>/editimages<?endif;?>/<?=$this->uri->segment(4)?>" class="form-horizontal" onsubmit="return prepareSubmit(this);">
   <div class="tab-content">
     <div class="tab-pane active" id="info">

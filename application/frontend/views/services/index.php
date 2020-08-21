@@ -36,8 +36,8 @@
 							<input type="checkbox" name="aggrement" value="1" /> <a href="#" data-toggle="modal" data-target="#expert-terms-txt">Uzman eğitmen rozeti şartları</a>nı okudum, kabul ediyorum.
 							</div>
 							
-							<button type="submit" class="btn btn-orange js-submit-btn"><i class="fa fa-shopping-cart"></i> Satın Al</button>
-							<button disabled="disabled" class="btn btn-orange hide js-loader"><i class="fa fa-spinner fa-pulse fa-fw"></i> Lütfen bekleyiniz...</button>
+							<button type="submit" class="btn btn-primary js-submit-btn"><i class="fa fa-shopping-cart"></i> Satın Al</button>
+							<button disabled="disabled" class="btn btn-orange d-none js-loader"><img class="align-middle" src="<?=base_url('public/img/spin.svg')?>" width="13" height="13" /> Lütfen bekleyiniz...</button>
 						</div>
 					</div>	
 					<?if($this->session->userdata('user_ugroup') == 3):?>
@@ -75,8 +75,8 @@
 							<p>Özel Web Sayfası hizmeti alarak diğer eğitmenlerin profil sayfalarından farklı bir profil sayfasına sahip olursunuz. Öğrencilerinize ayrıcalıklı bir eğitim hizmeti verdiğinizi hissettirmek istiyorsanız bu hizmeti satın alabilirsiniz.</p>
 							<p class="grey-text">Özel web sayfası bir defa satın alınır ve ömür boyu kullanılır.</p>
 							
-							<button type="submit" class="btn btn-orange js-submit-btn"><i class="fa fa-shopping-cart"></i> Satın Al</button>
-							<button disabled="disabled" class="btn btn-orange hide js-loader"><i class="fa fa-spinner fa-pulse fa-fw"></i> Lütfen bekleyiniz...</button>
+							<button type="submit" class="btn btn-primary js-submit-btn"><i class="fa fa-shopping-cart"></i> Satın Al</button>
+							<button disabled="disabled" class="btn btn-orange d-none js-loader"><img class="align-middle" src="<?=base_url('public/img/spin.svg')?>" width="13" height="13" /> Lütfen bekleyiniz...</button>
 						</div>
 					</div>	
 					<?if($this->session->userdata('user_ugroup') == 3):?>
@@ -112,8 +112,8 @@
 							<p>Öne Çıkanlar hizmeti alarak bir hafta boyunca arama sonuçlarında öncelikli olan "Öne Çıkan Eğitmenler" arasında yer alırsınız. Arama sonuçlarında öğrenciler öncelikli olarak sizin profilinizi görür ve daha fazla öğrenciye özel ders verme imkanına sahip olursunuz.</p>
 							<p class="grey-text">Öne Çıkanlar hizmetinin süresi 1 haftadır.</p>
 							
-							<button type="submit" class="btn btn-orange js-submit-btn"><i class="fa fa-shopping-cart"></i> Satın Al</button>
-							<button disabled="disabled" class="btn btn-orange hide js-loader"><i class="fa fa-spinner fa-pulse fa-fw"></i> Lütfen bekleyiniz...</button>
+							<button type="submit" class="btn btn-primary js-submit-btn"><i class="fa fa-shopping-cart"></i> Satın Al</button>
+							<button disabled="disabled" class="btn btn-orange d-none js-loader"><img class="align-middle" src="<?=base_url('public/img/spin.svg')?>" width="13" height="13" /> Lütfen bekleyiniz...</button>
 						</div>
 					</div>	
 					<?if($this->session->userdata('user_ugroup') == 3):?>
@@ -150,8 +150,8 @@
 							<p>Haftalık doping hizmeti alarak profilinizin arama sonuçlarında bir hafta boyunca grubunun en üstünde yer alması sağlanır.</p>
 							<p class="grey-text">Haftalık doping hizmetinin süresi 1 haftadır.</p>
 							
-							<button type="submit" class="btn btn-orange js-submit-btn"><i class="fa fa-shopping-cart"></i> Satın Al</button>
-							<button disabled="disabled" class="btn btn-orange hide js-loader"><i class="fa fa-spinner fa-pulse fa-fw"></i> Lütfen bekleyiniz...</button>
+							<button type="submit" class="btn btn-primary js-submit-btn"><i class="fa fa-shopping-cart"></i> Satın Al</button>
+							<button disabled="disabled" class="btn btn-orange d-none js-loader"><img class="align-middle" src="<?=base_url('public/img/spin.svg')?>" width="13" height="13" /> Lütfen bekleyiniz...</button>
 						</div>
 					</div>	
 					<?if($this->session->userdata('user_ugroup') == 3):?>
@@ -190,8 +190,8 @@
 							<p>Aylık doping hizmeti alarak profilinizin arama sonuçlarında bir ay boyunca grubunun en üstünde yer alması sağlanır.</p>
 							<p class="grey-text">Aylık doping hizmetinin süresi 1 aydır.</p>
 							
-							<button type="submit" class="btn btn-orange js-submit-btn"><i class="fa fa-shopping-cart"></i> Satın Al</button>
-							<button disabled="disabled" class="btn btn-orange hide js-loader"><i class="fa fa-spinner fa-pulse fa-fw"></i> Lütfen bekleyiniz...</button>
+							<button type="submit" class="btn btn-primary js-submit-btn"><i class="fa fa-shopping-cart"></i> Satın Al</button>
+							<button disabled="disabled" class="btn btn-orange d-none js-loader"><img class="align-middle" src="<?=base_url('public/img/spin.svg')?>" width="13" height="13" /> Lütfen bekleyiniz...</button>
 						</div>
 					</div>	
 					<?if($this->session->userdata('user_ugroup') == 3):?>
@@ -255,8 +255,8 @@
 								</div>								
 							</div>
 							
-							<button type="submit" class="btn btn-orange js-submit-btn"><i class="fa fa-shopping-cart"></i> Satın Al</button>
-							<button disabled="disabled" class="btn btn-orange hide js-loader"><i class="fa fa-spinner fa-pulse fa-fw"></i> Lütfen bekleyiniz...</button>
+							<button type="submit" class="btn btn-primary js-submit-btn"><i class="fa fa-shopping-cart"></i> Satın Al</button>
+							<button disabled="disabled" class="btn btn-orange d-none js-loader"><img class="align-middle" src="<?=base_url('public/img/spin.svg')?>" width="13" height="13" /> Lütfen bekleyiniz...</button>
 						</div>
 					</div>	
 					<?if($this->session->userdata('user_ugroup') == 4):?>
@@ -319,8 +319,8 @@
 								</div>								
 							</div>
 							
-							<button type="submit" class="btn btn-orange js-submit-btn"><i class="fa fa-shopping-cart"></i> Satın Al</button>
-							<button disabled="disabled" class="btn btn-orange hide js-loader"><i class="fa fa-spinner fa-pulse fa-fw"></i> Lütfen bekleyiniz...</button>
+							<button type="submit" class="btn btn-primary js-submit-btn"><i class="fa fa-shopping-cart"></i> Satın Al</button>
+							<button disabled="disabled" class="btn btn-orange d-none js-loader"><img class="align-middle" src="<?=base_url('public/img/spin.svg')?>" width="13" height="13" /> Lütfen bekleyiniz...</button>
 						</div>
 					</div>	
 					<?if($this->session->userdata('user_ugroup') == 4):?>
@@ -383,8 +383,8 @@
 								</div>								
 							</div>
 							
-							<button type="submit" class="btn btn-orange js-submit-btn"><i class="fa fa-shopping-cart"></i> Satın Al</button>
-							<button disabled="disabled" class="btn btn-orange hide js-loader"><i class="fa fa-spinner fa-pulse fa-fw"></i> Lütfen bekleyiniz...</button>
+							<button type="submit" class="btn btn-primary js-submit-btn"><i class="fa fa-shopping-cart"></i> Satın Al</button>
+							<button disabled="disabled" class="btn btn-orange d-none js-loader"><img class="align-middle" src="<?=base_url('public/img/spin.svg')?>" width="13" height="13" /> Lütfen bekleyiniz...</button>
 						</div>
 					</div>	
 					<?if($this->session->userdata('user_ugroup') == 4):?>

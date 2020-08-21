@@ -1,6 +1,6 @@
 <section class="panel panel-default">
 <header class="panel-heading bg-light">Yeni Dil Değişkeni Ekle</header>
-<div class="panel-body">
+<div class="card-body">
   <form method="post" action="<?=current_url()?>" class="form-horizontal">
 	
 	<div class="form-group">

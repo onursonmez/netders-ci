@@ -9,7 +9,7 @@
   </ul>
   <span><a href="<?=base_url('backend/menus/items/'.$this->uri->segment(4))?>"><i class="fa fa-bars"></i> Öğe listesi</a></span>
 </header>
-<div class="panel-body">
+<div class="card-body">
 
   <form method="post" action="<?=base_url('backend/menus')?><?if(strstr(uri_string(), 'additem') == TRUE):?>/additem/<?=$this->uri->segment(4)?>/<?=$this->uri->segment(5)?><?else:?>/edititem/<?=$this->uri->segment(4)?>/<?=$this->uri->segment(5)?><?endif;?>" class="form-horizontal" onsubmit="return prepareSubmit(this);">
   <div class="tab-content">

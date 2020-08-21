@@ -1,9 +1,11 @@
 <form  action="<?=site_url('users/discounts')?>" method="post" class="ajax-form js-dont-reset">
-	<div class="panel panel-default margin-bottom-20">
-		<div class="panel-heading"><h4>Özel Ders İndirimleri</h4></div>
-		<div class="panel-body">
+	<div class="card box-shadow mb-4">
+		<div class="card-header">
+			<h4 class="mb-0 pt-3 pb-3">Özel Ders İndirimleri</h4>
+		</div>
+		<div class="card-body">
 			<p>Öğrencilerinize çeşitli durumlarda indirim fırsatları sunabilirsiniz. Aşağıdaki alanda yer alan durumlardan, istediğiniz oranlarda indirim oranı belirleyebilirsiniz.</p>
-			<div class="row">	
+			<div class="row">
 				<div class="form-group col-md-12">
 					<table class="table">
 						<tbody>
@@ -21,7 +23,7 @@
 									</select>
 									<span class="lightgrey-text font-size-11">"Bu indirimi tanımlamanız sıralamalarda üst sıralarda çıkmanızı sağlar"</span>
 								</td>
-							</tr>							
+							</tr>
 							<tr>
 								<td>Eğitmen Evi İndirimi</td>
 								<td>
@@ -63,7 +65,7 @@
 									<textarea name="discount12_text" class="form-control" rows="5" placeholder="Engelli İndirimi Şartları"><?=$this->session->userdata('user_discount12_text')?></textarea>
 									<span class="lightgrey-text font-size-11">Engelli indirimi seçtiyseniz lütfen engelli indirimi şartlarınızdan bahsediniz.</span>
 								</td>
-							</tr>							
+							</tr>
 							<tr>
 								<td>Öneri İndirimi</td>
 								<td>
@@ -74,14 +76,14 @@
 										<option value="15"<?if($this->session->userdata('user_discount13') == 15):?> selected<?endif;?>>%15</option>
 									</select>
 								</td>
-							</tr>		
+							</tr>
 							<tr>
 								<td>Öneri İndirimi Şartları</td>
 								<td>
 									<textarea name="discount13_text" class="form-control" rows="5" placeholder="Öneri İndirimi Şartları"><?=$this->session->userdata('user_discount13_text')?></textarea>
 									<span class="lightgrey-text font-size-11">Öneri indirimi seçtiyseniz lütfen öneri indirimi şartlarınızdan bahsediniz.</span>
 								</td>
-							</tr>																										
+							</tr>
 							<tr>
 								<td>Paket Program İndirimi</td>
 								<td>
@@ -99,26 +101,26 @@
 									<textarea name="discount11_text" class="form-control" rows="5" placeholder="Paket Program Şartları"><?=$this->session->userdata('user_discount11_text')?></textarea>
 									<span class="lightgrey-text font-size-11">Paket program indirimi seçtiyseniz lütfen paket program kapsamınızdan bahsediniz.</span>
 								</td>
-							</tr>																																			
-						</tbody>						
+							</tr>
+						</tbody>
 					</table>
-				</div>				
-				
+				</div>
+
 				<div class="col-md-12">
-					<button type="submit" class="btn btn-orange js-submit-btn">Güncelle</button>
-					<button disabled="disabled" class="btn btn-orange hide js-loader"><i class="fa fa-spinner fa-pulse fa-fw"></i> Lütfen bekleyiniz...</button>
-				</div>								
+					<button type="submit" class="btn btn-primary js-submit-btn">Güncelle</button>
+					<button disabled="disabled" class="btn btn-orange d-none js-loader"><img class="align-middle" src="<?=base_url('public/img/spin.svg')?>" width="13" height="13" /> Lütfen bekleyiniz...</button>
+				</div>
 			</div>
 		</div>
 	</div>
-	
-	<div class="panel panel-default margin-bottom-20">
-		<div class="panel-heading">
-			<h4>Canlı Ders İndirimleri</h4>
+
+	<div class="card box-shadow mb-4">
+		<div class="card-header">
+			<h4 class="mb-0 pt-3 pb-3">Canlı Ders İndirimleri</h4>
 		</div>
-		<div class="panel-body">
+		<div class="card-body">
 			<p>Öğrencilerinize aynı anda birden fazla ders satın alırken indirim yaparak daha fazla ders almalarını sağlayabilirsiniz. Örneğin 3 canlı ders alana %5 indirim yapmak istiyorsanız "3 ders" altındaki seçim kutusundan %5'i seçiniz. Minimum indirim oranı %5, maksimum indirim oranı %20'dir.</p>
-			<div class="row">	
+			<div class="row">
 				<div class="form-group col-md-12 table-responsive">
 					<table class="table table-bordered">
 	                    <tbody>
@@ -149,7 +151,7 @@
 										<option value="10"<?if($this->session->userdata('user_discount2') == 10):?> selected<?endif;?>>%10</option>
 										<option value="15"<?if($this->session->userdata('user_discount2') == 15):?> selected<?endif;?>>%15</option>
 										<option value="20"<?if($this->session->userdata('user_discount2') == 20):?> selected<?endif;?>>%20</option>
-									</select>												
+									</select>
 								</td>
 								<td width="100">
 									<select name="discount3" class="form-control">
@@ -158,7 +160,7 @@
 										<option value="10"<?if($this->session->userdata('user_discount3') == 10):?> selected<?endif;?>>%10</option>
 										<option value="15"<?if($this->session->userdata('user_discount3') == 15):?> selected<?endif;?>>%15</option>
 										<option value="20"<?if($this->session->userdata('user_discount3') == 20):?> selected<?endif;?>>%20</option>
-									</select>													
+									</select>
 								</td>
 								<td width="100">
 									<select name="discount4" class="form-control">
@@ -167,7 +169,7 @@
 										<option value="10"<?if($this->session->userdata('user_discount4') == 10):?> selected<?endif;?>>%10</option>
 										<option value="15"<?if($this->session->userdata('user_discount4') == 15):?> selected<?endif;?>>%15</option>
 										<option value="20"<?if($this->session->userdata('user_discount4') == 20):?> selected<?endif;?>>%20</option>
-									</select>													
+									</select>
 								</td>
 								<td width="100">
 									<select name="discount5" class="form-control">
@@ -176,7 +178,7 @@
 										<option value="10"<?if($this->session->userdata('user_discount5') == 10):?> selected<?endif;?>>%10</option>
 										<option value="15"<?if($this->session->userdata('user_discount5') == 15):?> selected<?endif;?>>%15</option>
 										<option value="20"<?if($this->session->userdata('user_discount5') == 20):?> selected<?endif;?>>%20</option>
-									</select>													
+									</select>
 								</td>
 								<td width="100">
 									<select name="discount6" class="form-control">
@@ -185,16 +187,16 @@
 										<option value="10"<?if($this->session->userdata('user_discount6') == 10):?> selected<?endif;?>>%10</option>
 										<option value="15"<?if($this->session->userdata('user_discount6') == 15):?> selected<?endif;?>>%15</option>
 										<option value="20"<?if($this->session->userdata('user_discount6') == 20):?> selected<?endif;?>>%20</option>
-									</select>												
+									</select>
 								</td>
-	                        </tr>			                            
-	                    </tbody>							                        
-	                </table>					
+	                        </tr>
+	                    </tbody>
+	                </table>
 				</div>
 				<div class="col-md-12">
-					<button type="submit" class="btn btn-orange js-submit-btn">Güncelle</button>
-					<button disabled="disabled" class="btn btn-orange hide js-loader"><i class="fa fa-spinner fa-pulse fa-fw"></i> Lütfen bekleyiniz...</button>
-				</div>								
+					<button type="submit" class="btn btn-primary js-submit-btn">Güncelle</button>
+					<button disabled="disabled" class="btn btn-orange d-none js-loader"><img class="align-middle" src="<?=base_url('public/img/spin.svg')?>" width="13" height="13" /> Lütfen bekleyiniz...</button>
+				</div>
 			</div>
 		</div>
 	</div>

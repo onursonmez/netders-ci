@@ -2,32 +2,22 @@
 
   $(function(){
 
-	$('[data-type="mobile-number"]').intlTelInput({
-		preferredCountries: [ "tr", "de", "us" ],
-		separateDialCode: true,
-		initialCountry: "TR",
-		defaultCountry: "TR",
-		numberType: "MOBILE",
-		geoIpLookup: false,
-		nationalMode: false,
-		/*
-		geoIpLookup: function(callback) {
-			$.get('http://ipinfo.io', function() {}, "jsonp").always(function(resp) {
-				var countryCode = (resp && resp.country) ? resp.country : "";
-				callback(countryCode);
-			});
-		},
-		*/     
-		utilsScript: base_url + "public/vendor/intl-tel-input/lib/libphonenumber/build/utils.js?7"
-	});
-	$('[data-type="mobile-number"]').on('keyup', function(){
-		if($(this).attr('placeholder').substring(0,3) == +90){
-			$(this).mask('+00 000 000 0000');
-		}
-	});
-	
+    var input = document.querySelector('[data-type="mobile-number"]');
+    if(input)
+    {
+      var iti = intlTelInput(input, {
+        utilsScript: base_url + "public/vendor/intl-tel-input/build/js/utils.js?7",
+        initialCountry: "tr",
+        preferredCountries: ["tr", "de", "us"],
+        hiddenInput: "mobile",
+      });
+    }
+
+    $('[data-type="mobile-number"]').mask('0#');
+    
+
 	$('.money-three').mask('000000.00', {reverse: true});
-	
+
 	$('ul.sf-menu').supersubs({
 		minWidth:	12,	 // minimum width of submenus in em units
 		maxWidth:	27,	 // maximum width of submenus in em units
@@ -36,16 +26,16 @@
 	}).superfish();		 // call supersubs first, then superfish, so that subs are
 						 // not display:none when measuring. Call before initialising
 						 // containing tabs for same reason.
-						 
+
 	var $navbar = $("#mobile-menu").mmenu({
 	   "counters": true,
 	   "navbar" : {
 			"title" : "Menü"
-		},	   
+		},
 	   "setSelected": {
             "hover": true,
             "parent": true
-       },	   
+       },
 	   "searchfield": {
 		   "placeholder": "Menüde ara...",
 		   "resultsPanel": true,
@@ -57,12 +47,12 @@
           "border-full",
           "widescreen",
           "pagedim-black"
-          
+
        ],
 	   "sectionIndexer" : {
 			"add" : true,
 			"addTo" : "[id*='menu-']"
-	   },       
+	   },
        "navbars": [
           {
              "position": "top",
@@ -76,14 +66,14 @@
         "clear": true
       }
      });
-    
+
 	var $icon = $("#navbar-icon");
 	var API = $navbar.data( "mmenu" );
-	
+
 	$icon.on( "click", function() {
 	   API.open();
 	});
-	
+
 	API.bind( "opened", function() {
 	   setTimeout(function() {
 	      $icon.addClass( "is-active" );
@@ -93,8 +83,8 @@
 	   setTimeout(function() {
 	      $icon.removeClass( "is-active" );
 	   }, 100);
-	});    
-	 	
+	});
+
 	// sparkline
 	var sr, sparkline = function($re){
 		$(".sparkline").each(function(){
@@ -115,9 +105,9 @@
 	// easypie
 	var easypie = function(){
 	$('.easypiechart').each(function(){
-		var $this = $(this), 
-		$data = $this.data(), 
-		$step = $this.find('.step'), 
+		var $this = $(this),
+		$data = $this.data(),
+		$step = $this.find('.step'),
 		$target_value = parseInt($($data.target).text()),
 		$value = 0;
 		$data.barColor || ( $data.barColor = function($percent) {
@@ -139,12 +129,12 @@
 		});
 	};
 	easypie();
-  
+
 	// datepicker
 	$('.dp').datepicker({weekStart: 1, format: 'dd.mm.yyyy', autoclose: true});
-	
+
 	$(".time-picker").timepicker({"minuteStep": 5, "showMeridian": false});
-	
+
 	// dropfile
 	$('.dropfile').each(function(){
 		var $dropbox = $(this);
@@ -189,7 +179,7 @@
     $(document).on('updateNav', function(){
       $self.slimScroll($data);
     });
-	});	
+	});
 
 	// portlet
 	$('.portlet').each(function(){
@@ -236,7 +226,7 @@
 			}
 		);
 	});
-	
+
 	// add notes
 	/*
 	function addMsg($msg){
@@ -252,14 +242,14 @@
                     'Sophi sent you a email<br>'+
                     '<small class="text-muted">1 minutes ago</small>'+
                   '</span>'+
-                '</a>';	
+                '</a>';
   setTimeout(function(){addMsg($msg);}, 1500);
   */
 	//chosen
 	$(".chosen-select").length && $(".chosen-select").chosen({"search_contains": true});
 
-	
-	$(document).ready(function(){      
+
+	$(document).ready(function(){
 	   resizeChosen();
 	   jQuery(window).on('resize', resizeChosen);
 	});
@@ -271,7 +261,7 @@ function resizeChosen() {
 	setTimeout(function(){
 	   $(".chosen-container").each(function() {
 	       $(this).attr('style', 'width: 100%');
-	   });          
+	   });
 	}, 100);
 }
 $.fn.faderEffect = function(options){
@@ -284,7 +274,7 @@ $.fn.faderEffect = function(options){
     return this.each(function(){
 
     	// if we're done, do the callback
-    	if (0 == options.count) 
+    	if (0 == options.count)
     	{
     		if ( $.isFunction(options.callback) ) options.callback.call(this);
     		return;
@@ -296,11 +286,11 @@ $.fn.faderEffect = function(options){
     	// fade in, and call again
     	$(this).fadeIn(options.speed, function(){
     		options.count = options.count - 1; // countdown
-    		$(this).faderEffect(options); 
+    		$(this).faderEffect(options);
     	});
     });
 }
-  
+
 }(window.jQuery);
 
 function strip_tags(input, allowed) {

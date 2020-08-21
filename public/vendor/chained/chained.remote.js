@@ -91,10 +91,10 @@
                     /* JSON is an JavaScript object. Rebuild it as an array. */
                     /* {"":"--","series-1":"1 series","series-3":"3 series"} */
 					//alert(JSON.stringify(item));
-					
+
                     for (var index in json) {
                         if (json.hasOwnProperty(index)) {
-                            option_list[index] = [json[index]['id'], json[index]['name']]; 
+                            option_list[index] = [json[index]['id'], json[index]['name']];
                         }
                     }
                 }
@@ -108,7 +108,7 @@
                         selected_key = value;
                         continue;
                     }
-                    
+
                     var option = $("<option />").val(key).append(value);
                     $(self).append(option);
                     /*
@@ -131,17 +131,17 @@
                 });
 
                 /* If we have only the default value disable select. */
-                if (1 === $("option", self).size() && ($(self).val() == "0" || $(self).val() === "")) {
+                if (1 === $("option", self).length && ($(self).val() == "0" || $(self).val() === "")) {
                     $(self).attr("disabled", "disabled");
                 } else {
                     $(self).removeAttr("disabled");
                 }
-                
+
                 if($('#' + $(this).attr('id')).hasClass('chosen-select')){
-					$('#' + $(this).attr('id')).chosen('destroy');  
+					$('#' + $(this).attr('id')).chosen('destroy');
 					$('#' + $(this).attr('id')).chosen();
 				}
-				                
+
             }
         });
     };

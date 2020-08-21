@@ -12,7 +12,7 @@
 			<header class="panel-heading bg-light">
 				Öğrenci Bilgileri
 			</header>
-			<div class="panel-body">
+			<div class="card-body">
 					<div class="row">
 		
 						<div class="col-sm-6">
@@ -96,7 +96,7 @@
 			<header class="panel-heading bg-light">
 				Eğitmen/Ders Tercihi
 			</header>
-			<div class="panel-body">
+			<div class="card-body">
 					<div class="row">
 		
 						<div class="col-sm-6">
@@ -234,7 +234,7 @@
 		</ul>
 	</header>
 	
-	<div class="panel-body">
+	<div class="card-body">
 		<div class="tab-content">
 		
 		<div class="tab-pane active" id="lesson_tab_<?=$lesson->id?>">
@@ -398,7 +398,7 @@
 	  </ul>
 	</header>
 	
-	<div class="panel-body">
+	<div class="card-body">
 	  
 	  <div class="tab-content">
 

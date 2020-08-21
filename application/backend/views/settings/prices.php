@@ -9,7 +9,7 @@
 	<header class="panel-heading bg-light">
 		Fiyatlar
 	</header>
-	<div class="panel-body">
+	<div class="card-body">
 		<table class="table table-striped m-b-none">
 			<thead>
 				<tr>

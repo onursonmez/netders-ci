@@ -29,8 +29,8 @@
 															
 		<div class="col-md-<?if(!empty($verified_emails)):?>3<?else:?>4<?endif;?>">
 			<label>&nbsp;</label>
-			<button type="submit" class="btn btn-wide btn-orange js-submit-btn">İşlemi Gerçekleştir</button>
-			<button disabled="disabled" class="btn btn-wide btn-orange hide js-loader"><i class="fa fa-spinner fa-pulse fa-fw"></i> Lütfen bekleyiniz...</button>
+			<button type="submit" class="btn btn-primary js-submit-btn">İşlemi Gerçekleştir</button>
+			<button disabled="disabled" class="btn btn-wide btn-orange d-none js-loader"><img class="align-middle" src="<?=base_url('public/img/spin.svg')?>" width="13" height="13" /> Lütfen bekleyiniz...</button>
 		</div>
 		
 		<div class="col-md-12">

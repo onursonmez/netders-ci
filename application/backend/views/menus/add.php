@@ -8,7 +8,7 @@
     <?endforeach;?>
   </ul>
 </header>
-<div class="panel-body">
+<div class="card-body">
   <form method="post" action="<?=base_url('backend/menus')?><?if(strstr(uri_string(), 'add') == TRUE):?>/add<?else:?>/edit/<?=$this->uri->segment(4)?><?endif;?>" class="form-horizontal" onsubmit="return prepareSubmit(this);">
   <div class="tab-content">
     <?foreach($languages as $lang):?>

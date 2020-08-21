@@ -8,7 +8,7 @@
 	<header class="panel-heading bg-light">
 		Kullanıcı Fotoğrafları
 	</header>
-	<div class="panel-body">
+	<div class="card-body">
 		<div class="row">
 			<?if(!empty($items)):?>
 			<?foreach($items as $item):?>

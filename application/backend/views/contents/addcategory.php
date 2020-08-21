@@ -8,7 +8,7 @@
     <?endforeach;?>
   </ul>
 </header>
-<div class="panel-body">
+<div class="card-body">
 
   <form method="post" action="<?=base_url('backend/contents')?><?if(strstr(uri_string(), 'addcategory') == TRUE):?>/addcategory<?else:?>/editcategory/<?=$this->uri->segment(4)?><?endif;?>" class="form-horizontal" onsubmit="return prepareSubmit(this);">
   <div class="tab-content">

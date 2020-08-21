@@ -9,7 +9,7 @@
 	<header class="panel-heading bg-light">
 		Kayıtlı Telefon Numaraları
 	</header>
-	<div class="panel-body">
+	<div class="card-body">
 		<?if(empty($phones)):?>
 		Kayıtlı telefon numarası bulunamadı.
 		<?else:?>
@@ -41,7 +41,7 @@
 	<header class="panel-heading bg-light">
 		Telefonları Kontrol Et
 	</header>
-	<div class="panel-body">
+	<div class="card-body">
 			<div class="row">
 								
 				<div class="col-md-12">

@@ -1,6 +1,6 @@
-<div class="panel panel-default margin-bottom-20">
-	<div class="panel-heading"><h4>Eksik Profil Alanları</h4></div>
-	<div class="panel-body">
+<div class="card box-shadow mb-4">
+	<div class="card-header"><h4>Eksik Profil Alanları</h4></div>
+	<div class="card-body">
 		<form  action="<?=site_url('users/education')?>" method="post" class="ajax-form js-dont-reset">
 			<div class="row">	
 

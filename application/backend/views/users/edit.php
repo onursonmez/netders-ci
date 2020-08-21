@@ -10,7 +10,7 @@
 		<?=lang('PERSONEL_INFORMATIONS')?>
 		<span class="pull-right"><a href="<?=site_url($item->username)?>" target="_blank"><?=$item->username?></a> &bull; <a href="<?=site_url('users/activation?code='.$item->activation_code.'&email='.$item->email)?>" target="_blank">Aktivasyon</a></span>		
 	</header>
-	<div class="panel-body">
+	<div class="card-body">
 			<div class="row">
 								
 				<div class="col-sm-3">
@@ -166,7 +166,7 @@
 	<header class="panel-heading bg-light">
 		Eğitmen Dersleri
 	</header>
-	<div class="panel-body">
+	<div class="card-body">
 	
 		<table class="table table-responsive prices-table">
 			<tr>
@@ -236,7 +236,7 @@
 	<header class="panel-heading bg-light">
 		Lokasyonlar
 	</header>
-	<div class="panel-body">
+	<div class="card-body">
 	
 		<table class="table table-responsive locations-table">
 			<tr>
@@ -292,7 +292,7 @@
 	<header class="panel-heading bg-light">
 		Eğitim Bilgileri
 	</header>
-	<div class="panel-body">
+	<div class="card-body">
 		<div class="table-responsive">
 			<table class="table table-striped">
 				<thead>
@@ -339,7 +339,7 @@
 	<header class="panel-heading bg-light">
 		Tanıtım Yazıları
 	</header>
-	<div class="panel-body">
+	<div class="card-body">
 			<div class="row">
 				<div class="col-sm-12">
 					<div class="form-group">
@@ -389,7 +389,7 @@
 	<header class="panel-heading bg-light">
 		Eğitim Bilgileri
 	</header>
-	<div class="panel-body">
+	<div class="card-body">
 		<div class="table-responsive">
             <table class="table">
                 <tbody>   
@@ -529,7 +529,7 @@
 	<header class="panel-heading bg-light">
 		Virtual Bilgileri
 	</header>
-	<div class="panel-body">
+	<div class="card-body">
 			<div class="row">
 				<div class="col-sm-3">
 					<div class="form-group">
@@ -598,7 +598,7 @@
 	<header class="panel-heading bg-light">
 		Hesap Bilgileri
 	</header>
-	<div class="panel-body">
+	<div class="card-body">
 			<div class="row">
 	
 				<div class="col-sm-4">
@@ -649,7 +649,7 @@
 			<header class="panel-heading bg-light">
 				Fotoğraf
 			</header>
-			<div class="panel-body">
+			<div class="card-body">
 					<div class="row">
 						<div class="col-sm-12">
 							<img src="<?=base_url($item->photo)?>" width="100%" />
@@ -666,7 +666,7 @@
 			<header class="panel-heading bg-light">
 				Şifre<?if(strstr(uri_string(), 'edit') == TRUE):?> Değiştir<?endif;?>
 			</header>
-			<div class="panel-body">
+			<div class="card-body">
 					<div class="row">
 				
 						<div class="col-sm-6">
@@ -694,7 +694,7 @@
 	<header class="panel-heading bg-light">
 		SMS Gönder
 	</header>
-	<div class="panel-body">
+	<div class="card-body">
 			<div class="row">
 				<div class="col-sm-12">
 					<div class="form-group">
@@ -714,7 +714,7 @@
 	<header class="panel-heading bg-light">
 		İnceleme Değerlendirmesi
 	</header>
-	<div class="panel-body">
+	<div class="card-body">
 			<div class="row">
 				<div class="col-sm-12 m-b">
 					Aktivasyon: <?if($item->email_request):?>Hayır<?else:?>Evet<?endif;?>
@@ -758,7 +758,7 @@
 	<header class="panel-heading bg-light">
 		Talep Kayıtları
 	</header>
-	<div class="panel-body">
+	<div class="card-body">
 		<table class="table table-responsive prices-table">
 			<tr>
 				<th>Talep No</th>

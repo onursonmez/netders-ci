@@ -3,7 +3,7 @@
 		<?=lang('SLIDERS_NEW')?> 
 		<span class="pull-right"><a href="<?=base_url('backend/sliders')?>"><i class="fa fa-reply"></i> Geri Dön</a></span>
 	</header>
-	<div class="panel-body">
+	<div class="card-body">
 	  <form method="post" action="<?=base_url('backend/sliders')?><?if(strstr(uri_string(), 'add') == TRUE):?>/add<?else:?>/edit/<?=$this->uri->segment(4)?><?endif;?>" class="form-horizontal" onsubmit="return prepareSubmit(this);">
 	
 			<div class="form-group">

@@ -2,7 +2,7 @@
 <header class="panel-heading bg-light">
   <?=lang('SETTINGS_WATERMARK')?>
 </header>
-<div class="panel-body">
+<div class="card-body">
   <form method="POST" action="<?=base_url('backend/settings/watermark')?>" class="form-horizontal" enctype="multipart/form-data">
   <div class="tab-content">
 

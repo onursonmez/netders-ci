@@ -9,7 +9,7 @@
 	<header class="panel-heading bg-light">
 		<?=lang('USERS_POINTS_NEW')?>
 	</header>
-	<div class="panel-body">
+	<div class="card-body">
 			<div class="row">
 								
 				<div class="col-sm-3">

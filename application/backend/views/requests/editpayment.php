@@ -13,7 +13,7 @@
 				<header class="panel-heading bg-light">
 					<a href="<?=base_url('backend/requests/edit/'.$item->request_id)?>" target="_blank">#<?=$item->request_id?> Numaralı Talep</a> <?=$item->subject->title?> > <?=$item->level->title?> (<a href="<?=base_url('backend/users/edit/'.$item->teacher->id)?>" target="_blank"><?=$item->teacher->firstname?> <?=$item->teacher->lastname?></a>)
 				</header>
-				<div class="panel-body">
+				<div class="card-body">
 						<div class="row">
 	
 							<div class="col-sm-3">

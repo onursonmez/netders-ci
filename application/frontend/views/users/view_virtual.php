@@ -273,8 +273,8 @@
 						</div>
 			              
 			              <div class="col-lg-12">
-			                  <button type="submit" class="btn btn-orange js-submit-btn"><i class="fa fa-commenting"></i> Yorum yap</button>
-			                  <button disabled="disabled" class="btn btn-orange hide js-loader"><i class="fa fa-spinner fa-pulse fa-fw"></i> Lütfen bekleyiniz...</button>
+			                  <button type="submit" class="btn btn-primary js-submit-btn"><i class="fa fa-commenting"></i> Yorum yap</button>
+			                  <button disabled="disabled" class="btn btn-orange d-none js-loader"><img class="align-middle" src="<?=base_url('public/img/spin.svg')?>" width="13" height="13" /> Lütfen bekleyiniz...</button>
 			              </div>
 			
 			            </div>
@@ -322,8 +322,8 @@
 							<img src="<?=base_url('captcha/'.generate_captcha('ajax_message'))?>" width="100%" height="32" />
 						</div>
 						<div class="col-md-12">
-							<button type="submit" class="btn btn-orange js-submit-btn"><i class="fa fa-rocket"></i> Gönder</button>
-							<button disabled="disabled" class="btn btn-orange hide js-loader"><i class="fa fa-spinner fa-pulse fa-fw"></i> Lütfen bekleyiniz...</button>
+							<button type="submit" class="btn btn-primary js-submit-btn"><i class="fa fa-rocket"></i> Gönder</button>
+							<button disabled="disabled" class="btn btn-orange d-none js-loader"><img class="align-middle" src="<?=base_url('public/img/spin.svg')?>" width="13" height="13" /> Lütfen bekleyiniz...</button>
 						</div>
 					</div>
 					<input type="hidden" name="user_id" value="<?=$user->id?>" />

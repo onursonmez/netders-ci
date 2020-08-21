@@ -1,45 +1,18 @@
-// Tell JSHint to ignore this warning: "character may get silently deleted by one or more browsers"
-// jshint -W100
-
 // Array of country objects for the flag dropdown.
-// Each contains a name, country code (ISO 3166-1 alpha-2) and dial code.
-// Originally from https://github.com/mledoze/countries
 
-// then with a couple of manual re-arrangements to be alphabetical
-// then changed Kazakhstan from +76 to +7
-// and Vatican City from +379 to +39 (see issue 50)
-// and Caribean Netherlands from +5997 to +599
-// and Curacao from +5999 to +599
-// Removed:  Kosovo, Pitcairn Islands, South Georgia
+// Here is the criteria for the plugin to support a given country/territory
+// - It has an iso2 code: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
+// - It has it's own country calling code (it is not a sub-region of another country): https://en.wikipedia.org/wiki/List_of_country_calling_codes
+// - It has a flag in the region-flags project: https://github.com/behdad/region-flags/tree/gh-pages/png
+// - It is supported by libphonenumber (it must be listed on this page): https://github.com/googlei18n/libphonenumber/blob/master/resources/ShortNumberMetadata.xml
 
-// UPDATE Sept 12th 2015
-// List of regions that have iso2 country codes, which I have chosen to omit:
-// (based on this information: https://en.wikipedia.org/wiki/List_of_country_calling_codes)
-// AQ - Antarctica - all different country codes depending on which "base"
-// BV - Bouvet Island - no calling code
-// GS - South Georgia and the South Sandwich Islands - "inhospitable collection of islands" - same flag and calling code as Falkland Islands
-// HM - Heard Island and McDonald Islands - no calling code
-// PN - Pitcairn - tiny population (56), same calling code as New Zealand
-// TF - French Southern Territories - no calling code
-// UM - United States Minor Outlying Islands - no calling code
-
-// UPDATE the criteria of supported countries or territories (see issue 297)
-// Have an iso2 code: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
-// Have a country calling code: https://en.wikipedia.org/wiki/List_of_country_calling_codes
-// Have a flag
-// Must be supported by libphonenumber: https://github.com/googlei18n/libphonenumber
-
-// Update: converted objects to arrays to save bytes!
-// Update: added "priority" for countries with the same dialCode as others
-// Update: added array of area codes for countries with the same dialCode as others
-
-// So each country array has the following information:
+// Each country array has the following information:
 // [
 //    Country name,
 //    iso2 code,
 //    International dial code,
 //    Order (if >1 country with same dial code),
-//    Area codes (if >1 country with same dial code)
+//    Area codes
 // ]
 var allCountries = [
   [
@@ -60,7 +33,9 @@ var allCountries = [
   [
     "American Samoa",
     "as",
-    "1684"
+    "1",
+    5,
+    ["684"]
   ],
   [
     "Andorra",
@@ -75,12 +50,16 @@ var allCountries = [
   [
     "Anguilla",
     "ai",
-    "1264"
+    "1",
+    6,
+    ["264"]
   ],
   [
     "Antigua and Barbuda",
     "ag",
-    "1268"
+    "1",
+    7,
+    ["268"]
   ],
   [
     "Argentina",
@@ -116,7 +95,9 @@ var allCountries = [
   [
     "Bahamas",
     "bs",
-    "1242"
+    "1",
+    8,
+    ["242"]
   ],
   [
     "Bahrain (‫البحرين‬‎)",
@@ -131,7 +112,9 @@ var allCountries = [
   [
     "Barbados",
     "bb",
-    "1246"
+    "1",
+    9,
+    ["246"]
   ],
   [
     "Belarus (Беларусь)",
@@ -156,7 +139,9 @@ var allCountries = [
   [
     "Bermuda",
     "bm",
-    "1441"
+    "1",
+    10,
+    ["441"]
   ],
   [
     "Bhutan (འབྲུག)",
@@ -191,7 +176,9 @@ var allCountries = [
   [
     "British Virgin Islands",
     "vg",
-    "1284"
+    "1",
+    11,
+    ["284"]
   ],
   [
     "Brunei",
@@ -239,12 +226,15 @@ var allCountries = [
     "Caribbean Netherlands",
     "bq",
     "599",
-    1
+    1,
+    ["3", "4", "7"]
   ],
   [
     "Cayman Islands",
     "ky",
-    "1345"
+    "1",
+    12,
+    ["345"]
   ],
   [
     "Central African Republic (République centrafricaine)",
@@ -270,13 +260,15 @@ var allCountries = [
     "Christmas Island",
     "cx",
     "61",
-    2
+    2,
+    ["89164"]
   ],
   [
     "Cocos (Keeling) Islands",
     "cc",
     "61",
-    1
+    1,
+    ["89162"]
   ],
   [
     "Colombia",
@@ -352,7 +344,9 @@ var allCountries = [
   [
     "Dominica",
     "dm",
-    "1767"
+    "1",
+    13,
+    ["767"]
   ],
   [
     "Dominican Republic (República Dominicana)",
@@ -475,7 +469,9 @@ var allCountries = [
   [
     "Grenada",
     "gd",
-    "1473"
+    "1",
+    14,
+    ["473"]
   ],
   [
     "Guadeloupe",
@@ -486,7 +482,9 @@ var allCountries = [
   [
     "Guam",
     "gu",
-    "1671"
+    "1",
+    15,
+    ["671"]
   ],
   [
     "Guatemala",
@@ -497,7 +495,8 @@ var allCountries = [
     "Guernsey",
     "gg",
     "44",
-    1
+    1,
+    ["1481", "7781", "7839", "7911"]
   ],
   [
     "Guinea (Guinée)",
@@ -568,7 +567,8 @@ var allCountries = [
     "Isle of Man",
     "im",
     "44",
-    2
+    2,
+    ["1624", "74576", "7524", "7924", "7624"]
   ],
   [
     "Israel (‫ישראל‬‎)",
@@ -584,7 +584,9 @@ var allCountries = [
   [
     "Jamaica",
     "jm",
-    "1876"
+    "1",
+    4,
+    ["876", "658"]
   ],
   [
     "Japan (日本)",
@@ -595,7 +597,8 @@ var allCountries = [
     "Jersey",
     "je",
     "44",
-    3
+    3,
+    ["1534", "7509", "7700", "7797", "7829", "7937"]
   ],
   [
     "Jordan (‫الأردن‬‎)",
@@ -606,7 +609,8 @@ var allCountries = [
     "Kazakhstan (Казахстан)",
     "kz",
     "7",
-    1
+    1,
+    ["33", "7"]
   ],
   [
     "Kenya",
@@ -617,6 +621,11 @@ var allCountries = [
     "Kiribati",
     "ki",
     "686"
+  ],
+  [
+    "Kosovo",
+    "xk",
+    "383"
   ],
   [
     "Kuwait (‫الكويت‬‎)",
@@ -737,7 +746,8 @@ var allCountries = [
     "Mayotte",
     "yt",
     "262",
-    1
+    1,
+    ["269", "639"]
   ],
   [
     "Mexico (México)",
@@ -772,7 +782,9 @@ var allCountries = [
   [
     "Montserrat",
     "ms",
-    "1664"
+    "1",
+    16,
+    ["664"]
   ],
   [
     "Morocco (‫المغرب‬‎)",
@@ -853,7 +865,9 @@ var allCountries = [
   [
     "Northern Mariana Islands",
     "mp",
-    "1670"
+    "1",
+    17,
+    ["670"]
   ],
   [
     "Norway (Norge)",
@@ -951,7 +965,7 @@ var allCountries = [
     "250"
   ],
   [
-    "Saint Barthélemy (Saint-Barthélemy)",
+    "Saint Barthélemy",
     "bl",
     "590",
     1
@@ -964,12 +978,16 @@ var allCountries = [
   [
     "Saint Kitts and Nevis",
     "kn",
-    "1869"
+    "1",
+    18,
+    ["869"]
   ],
   [
     "Saint Lucia",
     "lc",
-    "1758"
+    "1",
+    19,
+    ["758"]
   ],
   [
     "Saint Martin (Saint-Martin (partie française))",
@@ -985,7 +1003,9 @@ var allCountries = [
   [
     "Saint Vincent and the Grenadines",
     "vc",
-    "1784"
+    "1",
+    20,
+    ["784"]
   ],
   [
     "Samoa",
@@ -1035,7 +1055,9 @@ var allCountries = [
   [
     "Sint Maarten",
     "sx",
-    "1721"
+    "1",
+    21,
+    ["721"]
   ],
   [
     "Slovakia (Slovensko)",
@@ -1096,7 +1118,8 @@ var allCountries = [
     "Svalbard and Jan Mayen",
     "sj",
     "47",
-    1
+    1,
+    ["79"]
   ],
   [
     "Swaziland",
@@ -1161,7 +1184,9 @@ var allCountries = [
   [
     "Trinidad and Tobago",
     "tt",
-    "1868"
+    "1",
+    22,
+    ["868"]
   ],
   [
     "Tunisia (‫تونس‬‎)",
@@ -1181,7 +1206,9 @@ var allCountries = [
   [
     "Turks and Caicos Islands",
     "tc",
-    "1649"
+    "1",
+    23,
+    ["649"]
   ],
   [
     "Tuvalu",
@@ -1191,7 +1218,9 @@ var allCountries = [
   [
     "U.S. Virgin Islands",
     "vi",
-    "1340"
+    "1",
+    24,
+    ["340"]
   ],
   [
     "Uganda",
@@ -1239,7 +1268,8 @@ var allCountries = [
     "Vatican City (Città del Vaticano)",
     "va",
     "39",
-    1
+    1,
+    ["06698"]
   ],
   [
     "Venezuela",
@@ -1252,7 +1282,7 @@ var allCountries = [
     "84"
   ],
   [
-    "Wallis and Futuna",
+    "Wallis and Futuna (Wallis-et-Futuna)",
     "wf",
     "681"
   ],
@@ -1260,7 +1290,8 @@ var allCountries = [
     "Western Sahara (‫الصحراء الغربية‬‎)",
     "eh",
     "212",
-    1
+    1,
+    ["5288", "5289"]
   ],
   [
     "Yemen (‫اليمن‬‎)",
@@ -1281,11 +1312,12 @@ var allCountries = [
     "Åland Islands",
     "ax",
     "358",
-    1
+    1,
+    ["18"]
   ]
 ];
 
-// loop over all of the countries above
+// loop over all of the countries above, restructuring the data to be objects with named keys
 for (var i = 0; i < allCountries.length; i++) {
   var c = allCountries[i];
   allCountries[i] = {

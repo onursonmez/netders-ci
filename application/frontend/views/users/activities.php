@@ -5,12 +5,12 @@
 	$earn = 0;
 ?>
 <form  action="<?=site_url('users/activities')?>" method="post" class="ajax-form js-dont-reset">
-	<div class="panel panel-default margin-bottom-20">
-		<div class="panel-heading">
+	<div class="card box-shadow mb-4">
+		<div class="card-header">
 			<h4>Hesap Hareketleri</h4>
 		</div>
-		<div class="panel-body">
-		
+		<div class="card-body">
+
 			<table class="table table-striped">
 				<thead>
 					<tr>
@@ -33,7 +33,7 @@
 						</td>
 						<td><?if($order->start_date && $order->end_date):?><?=date('d.m.Y H:i',$order->start_date)?><br /><?=date('d.m.Y H:i',$order->end_date)?><?else:?><?=$order->string_date?><?endif;?></td>
 						<td>
-							<?if($order->product_id != 29):?><?=number_format($order->price, 2)?> TL<?endif;?> / 
+							<?if($order->product_id != 29):?><?=number_format($order->price, 2)?> TL<?endif;?> /
 							<?if($order->product_id != 29):?><?=number_format($order->payed_price, 2)?> TL<?endif;?>
 						</td>
 						<td><?=$order->used_money?> / <?=$order->earn_money?></td>
@@ -47,16 +47,16 @@
 						<td><strong><?=$total_price?> TL</strong> / <strong><?=$total_payed?> TL</strong></td>
 						<td><strong><?=$total_used?></strong> / <strong><?=$total_earn?></strong></td>
 						<td></td>
-					</tr>													
+					</tr>
 					<?else:?>
 					<tr>
 						<td colspan="8">Hesap hareketiniz bulunmamaktadır</td>
 					</tr>
 					<?endif;?>
-				</tbody>				
+				</tbody>
 			</table>
-									
+
 		</div>
 	</div>
-		
+
 </form>

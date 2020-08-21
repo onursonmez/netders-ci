@@ -9,7 +9,7 @@
 	<header class="panel-heading bg-light">
 		<?=lang('PERSONEL_INFORMATIONS')?>
 	</header>
-	<div class="panel-body">
+	<div class="card-body">
 			<div class="row">
 								
 				<div class="col-sm-3">
@@ -99,7 +99,7 @@
 	<header class="panel-heading bg-light">
 		Hesap Bilgileri
 	</header>
-	<div class="panel-body">
+	<div class="card-body">
 			<div class="row">
 	
 				<div class="col-sm-6">
