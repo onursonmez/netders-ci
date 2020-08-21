@@ -4,3 +4,6 @@ application/backend/config/database.php
 application/frontend/config/database.php
 application/backend/config/config.php
 application/frontend/config/config.php
+application/frontend/cache/
+application/backend/cache/
+.htaccess

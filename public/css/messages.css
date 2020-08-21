@@ -1,0 +1,19 @@
+.message-area{
+  min-height: 300px;
+  max-height: 300px;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling:touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+.message-sidebar-area{
+  min-height: 455px;
+  max-height: 455px;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling:touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+.message{}
+
+.message-left{max-width: 80%;}
+.message-right{max-width: 80%;}
