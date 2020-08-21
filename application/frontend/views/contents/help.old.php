@@ -1,5 +1,5 @@
 <?
-	$items = $category->id == 2 && !$this->input->get('q') ? $popular : $items; 
+	$items = $category->id == 2 && !$this->input->get('q') ? $popular : $items;
 ?>
 <section class="background-header padding-10 padding-bottom-30">
 <div class="container">
@@ -36,20 +36,20 @@
 			<?endforeach;?>
 		</ol>
 	<?endif;?>
-	
+
 	<div class="row">
 		<!--
 		<div class="col-md-12">
 			<div class="alert alert-danger alert-dismissible" role="alert">
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<strong>Uyarı!</strong> Yardım sayfasında içerik geliştirme çalışmaları yapılmaktadır. Çalışmanın tahmini bitiş tarihi 1 Kasım 2016 olarak planlanmıştır.
-			</div>			
+			</div>
 		</div>
 		-->
-		
+
 		<div class="col-sm-3">
 			<div class="panel panel-default">
-			<div class="panel-body">
+			<div class="card-body">
 			<h3>Yardım Konuları</h3>
 			<ul class="clear-list">
 			<?foreach($help_categories as $help_category):?>
@@ -57,8 +57,8 @@
 			<li><a href="<?=$link?>"<?if($link == current_url()):?> class="active"<?endif;?>><?=str_replace('-', '<i class="fa fa-angle-double-right"></i> ', substr($help_category->delimiter, 1))?> <?=$help_category->title?> (<?=$help_category->count?>)</a></li>
 			<?endforeach;?>
 			</ul>
-			</div>			
-			</div>			
+			</div>
+			</div>
 		</div>
 		<div class="col-sm-9">
 		    <div class="row">
@@ -72,16 +72,16 @@
 		    		<?else:?>
 		    			<?if(!empty($items)):?>
 				        <h2>Popüler Yardım Konuları</h2>
-						<small>En çok aşağıdaki yardım konuları incelenmiş</small>
-						<?endif;?>
-			        <?endif;?>
-		        <?else:?>
-			        <h2><?=$category->title?></h2>
-			        <small><?=$category->title?> kategorisine ait yardım konuları</small>
-		        <?endif;?>
+								<small>En çok aşağıdaki yardım konuları incelenmiş</small>
+							<?endif;?>
+			      <?endif;?>
+		      <?else:?>
+		        <h2><?=$category->title?></h2>
+		        <small><?=$category->title?> kategorisine ait yardım konuları</small>
+	        <?endif;?>
 		        </div>
 		    </div>
-    		
+
     		<div class="row">
     			<?if(empty($items)):?>
 	    			<div class="col-sm-12">
@@ -105,11 +105,11 @@
 				     <?endforeach;?>
 			     <?endif;?>
     		</div>
-		</div>     
-	</div>   
+		</div>
+	</div>
 
     <?if(!empty($pages)):?>
-	<hr>    
+	<hr>
     <div class="text-center">
         <ul class="pagination">
             <?foreach($pages as $page):?>
@@ -119,6 +119,6 @@
     </div>
     <?endif;?>
 
-         
+
     </div><!-- End container -->
 </section>

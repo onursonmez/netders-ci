@@ -1,10 +1,10 @@
-<div class="section-white">
+<section class="margin-top-30 margin-bottom-30">
 	<div class="container">
 		<?if(!empty($breadcrumb)):?>
 			<ul class="breadcrumb">
 				<?foreach($breadcrumb as $value):?>
 					<?if(!empty($value['link']) && $value['link'] != current_url()):?>
-						<li><a href="<?=amp_url($value['link'])?>"><?=$value['title']?></a></li>
+						<li><a href="<?=$value['link']?>"><?=$value['title']?></a></li>
 					<?else:?>
 						<li class="active"><?=$value['title']?></li>
 					<?endif;?>
@@ -14,9 +14,9 @@
 
 		<h2 class="margin-bottom-20"><?=$item->title?></h2>
 		<?if(isset($main_image->original)):?><img src="<?=base_url($main_image->original)?>" class="pull-left margin-right-20" align="left" /><?endif;?>
-		
-		<?=htmlspecialchars_decode(strip_tags($item->description))?>
-	
+
+		<?=htmlspecialchars_decode($item->description)?>
+
 		<?if(!empty($teachers->users)):?>
 		<?$search=base64_encode(site_url('ozel-ders-ilanlari-verenler/'.seo($item->city_title).'/?keyword='.$item->keyword))?>
 		<div class="row margin-top-20 margin-bottom-20">
@@ -25,7 +25,7 @@
 					<?foreach($teachers->users as $user):?>
 					<div class="item">
 						<div class="panel panel-default user-box" style="max-width:100%;">
-							<div class="panel-body">
+							<div class="card-body">
 								<div class="image"><a href="<?=site_url($user->username)?>?search=<?=$search?>"><img src="<?if($user->photo):?><?=base_url($user->photo)?><?else:?><?if($user->gender == 'F'):?><?=base_url('public/img/icon-female.png')?><?elseif($user->gender == 'M'):?><?=base_url('public/img/icon-male.png')?><?else:?><?=base_url('public/img/icon-none.png')?><?endif;?><?endif;?>" alt="<?=user_fullname($user->firstname, $user->lastname, $user->privacy_lastname)?>" class="img-padding-border img-circle" style="max-width:60%;" width="60%" /></a></div>
 								<div class="title"><strong class="margin-top-10"><a href="<?=site_url($user->username)?>?search=<?=$search?>"><?=user_fullname($user->firstname, $user->lastname, $user->privacy_lastname)?></a></strong></div>
 								<ul class="extra">
@@ -38,13 +38,14 @@
 						</div>
 					</div>
 					<?endforeach;?>
-				</div>	
+				</div>
 			</div>
 			<div class="col-md-12 text-center"><a href="<?=site_url('ozel-ders-ilanlari-verenler/'.seo($item->city_title).'/?keyword='.$item->keyword)?>" class="btn btn-orange margin-top-20">Diğer "<?=$item->title?>" Konusunda Özel Ders Veren Eğitmenler</a></div>
 		</div>
-		<?endif;?>		
-				
-		
+		<?endif;?>
+
+		<a class="block margin-top-20" href="#" onclick="window.history.back();">Geri Dön</a>
+
 		<?if(!empty($images) && sizeof($images) > 1):?>
 			<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
 			    <div class="slides"></div>
@@ -55,9 +56,9 @@
 			    <a class="play-pause"></a>
 			    <ol class="indicator"></ol>
 			</div>
-			
+
 			<hr>
-			
+
 			<div class="row">
 				<div id="blueimp_image_groups">
 				<?foreach($images as $image):?>
@@ -69,9 +70,9 @@
 				<?endforeach;?>
 				</div>
 			</div>
-		<?endif;?>    
+		<?endif;?>
 	</div><!-- End container -->
-</div>
+</section>
 
 
 
@@ -89,7 +90,3 @@ document.getElementById('blueimp_image_groups').onclick = function (event) {
 };
 </script>
 <?endif;?>
-
-
-
-
