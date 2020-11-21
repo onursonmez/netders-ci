@@ -121,6 +121,7 @@ $route['ozel-ders-ilanlari-verenler/(:any)'] = 'users/index/$1';
 $route['ozel-ders-ilanlari-verenler/(:any)/(:any)'] = 'users/index/$1/$2';
 $route['ozel-ders-ilanlari-verenler/(:any)/(:any)'] = 'users/index/$1/$2';
 
+$route['messages'] = 'messages/index';
 $route['messages/(:num)'] = 'messages/index/$1';
 $route['messages/(:any)'] = 'messages/$1';
 

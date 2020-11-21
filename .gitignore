@@ -7,3 +7,5 @@ application/frontend/config/config.php
 application/frontend/cache/
 application/backend/cache/
 .htaccess
+netders.sql
+*.DS_Store*

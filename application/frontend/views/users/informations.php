@@ -59,8 +59,10 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="rulesLabel">Tanıtım Yazısı Ekleme Kuralları</h4>
+	  	<h5 class="modal-title">Tanıtım Yazısı Ekleme Kuralları</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Kapat">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
       <div class="modal-body">
         <?
@@ -69,7 +71,7 @@
         ?>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Anlaşıldı!</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Anlaşıldı!</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

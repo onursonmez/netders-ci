@@ -22,8 +22,10 @@
 					  <div class="modal-dialog large">
 					    <div class="modal-content">
 					      <div class="modal-header">
-					        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					        <h4 class="modal-title" id="expertTermsLabel">Canlı Ders Haftalık Müsaitlik Takvimi</h4>
+						  	<h5 class="modal-title">Canlı Ders Haftalık Müsaitlik Takvimi</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Kapat">
+								<span aria-hidden="true">&times;</span>
+							</button>
 					      </div>
 					      <div class="modal-body">
 							    <h2>Haftalık Müsaitlik</h2>

@@ -30,6 +30,52 @@
 </div>
 </div>
 
+<!-- Modal Terms -->
+<div class="modal fade" id="terms-txt" tabindex="-1" role="dialog" aria-labelledby="termsLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+          <h5 class="modal-title">Kullanım Sözleşmesi</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Kapat">
+            <span aria-hidden="true">&times;</span>
+          </button>          
+	      </div>
+	      <div class="modal-body">
+	        <?
+	        	$content = content(14);
+	        	echo $content->description;
+	        ?>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-primary" data-dismiss="modal">Kapat</button>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	
+	<!-- Modal Expert Terms -->
+	<div class="modal fade" id="expert-terms-txt" tabindex="-1" role="dialog" aria-labelledby="expertTermsLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+          <h5 class="modal-title">Uzman Eğitmen Rozeti Şartları</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Kapat">
+            <span aria-hidden="true">&times;</span>
+          </button>               
+	      </div>
+	      <div class="modal-body">
+	        <?
+	        	$content = content(39);
+	        	echo $content->description;
+	        ?>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-primary" data-dismiss="modal">Kapat</button>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->	
+
 <nav id="main-mmenu">
       <ul>
           <li><a href="/">Ana Sayfa</a></li>

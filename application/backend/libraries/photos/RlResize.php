@@ -6,13 +6,13 @@
  *	VERSION: 4.0
  *	LISENSE: http://www.flynax.com/license-agreement.html
  *	PRODUCT: General Classifieds
- *	
+ *
  *	FILE: RLRESIZE.CLASS.PHP
  *
- *	This script is a commercial software and any kind of using it must be 
+ *	This script is a commercial software and any kind of using it must be
  *	coordinate with Flynax Owners Team and be agree to Flynax License Agreement
  *
- *	This block may not be removed from this file or any other files with out 
+ *	This block may not be removed from this file or any other files with out
  *	permission of Flynax respective owners.
  *
  *	Copyrights Flynax Classifieds Software | 2012
@@ -29,22 +29,22 @@ class RlResize {
 	var $resOriginalImage;
 	var $resResizedImage;
 	var $boolProtect = true;
-	
+
 	/**
 	* @var $gdVersion - gd version
 	**/
 	var $gdVersion;
-	
+
 	/**
 	* @var $returnRes - return resu;t
 	**/
 	var $returnRes = false;
-	
+
 	/**
 	* @var $ - valid class object
 	**/
 	var $rlValid;
-	
+
 	/**
 	* @var $watermark - allow watermark with resize oteration
 	**/
@@ -53,18 +53,18 @@ class RlResize {
 	function RlResize()
 	{
 		global $rlValid;
-		
+
 		$this -> rlValid = $rlValid;
-		
+
 		$_gd_info = gd_info();
 		if ( !$_gd_info )
-             return false;        
-   
+             return false;
+
 		preg_match( '/(\d)\.(\d)/', $_gd_info['GD Version'], $_match );
-   
+
 		$this -> gdVersion = $_match[1];
 	}
-	
+
 	/*
 	*
 	*	@Method:		RlResize
@@ -84,14 +84,14 @@ class RlResize {
 		$this->strResizedImagePath = $strSavePath;
 		$this->boolProtect = $boolProtect;
 		$this->rlWatermark = $watermark;
-		
+
 		//get the image dimensions
 		$this->arrOriginalDetails = getimagesize($this->strOriginalImagePath);
 		$this->arrResizedDetails = $this->arrOriginalDetails;
-		
+
 		//create an image resouce to work with
 		$this->resOriginalImage = $this->createImage($this->strOriginalImagePath);
-														
+
 		//select the image resize type
 		switch(strtoupper($strType)){
 			case 'P':
@@ -120,7 +120,7 @@ class RlResize {
 	*/
 	function findResourceDetails($resImage){
 		//check to see what image is being requested
-		if($resImage==$this->resResizedImage){										
+		if($resImage==$this->resResizedImage){
 			//return new image details
 			return $this->arrResizedDetails;
 		}else{
@@ -131,7 +131,7 @@ class RlResize {
 
 	/*
 	*
-	*	@Method:		updateNewDetails	
+	*	@Method:		updateNewDetails
 	*	@Parameters:	0
 	*	@Description:	Updates the width and height values of the resized details array
 	*
@@ -140,7 +140,7 @@ class RlResize {
 		$this->arrResizedDetails[0] = imagesx($this->resResizedImage);
 		$this->arrResizedDetails[1] = imagesy($this->resResizedImage);
 	}
-		
+
 	/*
 	*
 	*	@Method:		createImage
@@ -152,7 +152,7 @@ class RlResize {
 	function createImage($strImagePath){
 		//get the image details
 		$arrDetails = $this->findResourceDetails($strImagePath);
-		
+
 		//choose the correct function for the image type
 		switch($arrDetails['mime']){
 			case 'image/jpeg':
@@ -166,7 +166,7 @@ class RlResize {
 				break;
 		}
 	}
-		
+
 	/*
 	*
 	*	@Method:		saveImage
@@ -185,24 +185,24 @@ class RlResize {
 			{
 				$w_source = $GLOBALS['settings_global']->watermark_image;
 				$watermark = imagecreatefrompng($w_source);
-				
+
 				if ( $watermark )
 				{
 					list($watermark_width,$watermark_height) = getimagesize($w_source);
 					$image = $this->resResizedImage;
-					
+
 					//RB
 					//$dest_x = $this->arrResizedDetails[0] - $watermark_width - 5;
 					//$dest_y = $this->arrResizedDetails[1] - $watermark_height - 5;
-					
+
 					//CENTER
 					$dest_x = ($this->arrResizedDetails[0] / 2) - ($watermark_width / 2);
 					$dest_y = ($this->arrResizedDetails[1] / 2) - ($watermark_height / 2);
-					
+
 					//imagealphablending($image, false);
 					imagesavealpha($this->resResizedImage, true);
 					imagecopyresampled($this->resResizedImage, $watermark, $dest_x, $dest_y, 0, 0, $watermark_width, $watermark_height, $watermark_width, $watermark_height);
-		
+
 					/* clear memory */
 					imagedestroy($watermark);
 				}
@@ -210,41 +210,42 @@ class RlResize {
 			else if(!empty($GLOBALS['settings_global']->watermark_text))
 			{
 				$w_text = $GLOBALS['settings_global']->watermark_text;
-				
+
 				/*
 				if (empty($w_text))
 				{
 					$w_text = $this -> rlValid -> getDomain( RL_URL_HOME );
 				}
 				*/
-				
+
 				$w_blank = round( strlen( $w_text ) * 6.5 );
-				
+
 				$watermark = imagecreatetruecolor($w_blank, 18);
 				$bgc = imagecolortransparent($watermark, 0);
 				$tc  = imagecolorallocate($watermark, 255, 255, 255);
 				imagefilledrectangle($watermark, 0, 0, $w_blank, 18, $bgc);
-				
+
 				imagestring($watermark, 2, 5, 4, $w_text, $tc);
-		
-				$watermark_width = imagesx($watermark);  
-				$watermark_height = imagesy($watermark); 
-		
+
+				$watermark_width = imagesx($watermark);
+				$watermark_height = imagesy($watermark);
+
 				$x = 5;
 				$y = 5;
-				
+
 				$dest_x = $this->arrResizedDetails[0] - $watermark_width - $x;
 				$dest_y = $this->arrResizedDetails[1] - $watermark_height - $y;
-		
+
 				imagecopymerge($this->resResizedImage, $watermark, $dest_x, $dest_y, 0, 0, $watermark_width, $watermark_height, 100);
-				
+
 				/* clear memory */
 				imagedestroy($watermark);
 			}
 		}
-		
+
 		switch($this->arrResizedDetails['mime']){
 			case 'image/jpeg':
+				imageinterlace($this->resResizedImage, true); //progressive
 				$this -> returnRes = imagejpeg($this->resResizedImage, $this->strResizedImagePath, $numQuality);
 				break;
 			case 'image/png':
@@ -255,7 +256,7 @@ class RlResize {
 				break;
 		}
 	}
-	
+
 	/*
 	*
 	*	@Method:		showImage
@@ -267,10 +268,10 @@ class RlResize {
 	function showImage($resImage){
 		//get the image details
 		$arrDetails = $this->findResourceDetails($resImage);
-		
+
 		//set the correct header for the image we are displaying
 		header("Content-type: ".$arrDetails['mime']);
-		
+
 		switch($arrDetails['mime']){
 			case 'image/jpeg':
 				return imagejpeg($resImage);
@@ -283,7 +284,7 @@ class RlResize {
 				break;
 		}
 	}
-	
+
 	/*
 	*
 	*	@Method:		destroyImage
@@ -295,13 +296,13 @@ class RlResize {
 	function destroyImage(){
 		imagedestroy($this->resResizedImage);
 		imagedestroy($this->resOriginalImage);
-		
+
 		unset($this->resResizedImage);
 		unset($this->strResizedImagePath);
 		unset($this->resOriginalImage);
 		unset($this->strOriginalImagePath);
 	}
-	
+
 	/*
 	*
 	*	@Method:		_resize
@@ -313,7 +314,7 @@ class RlResize {
 	*/
 	function _resize($numWidth, $numHeight){
 		//check for image protection
-		if($this->_imageProtect($numWidth, $numHeight)){	
+		if($this->_imageProtect($numWidth, $numHeight)){
 			if($this->arrOriginalDetails['mime']=='image/gif'){
 				//GIF image
 				$this->resResizedImage = imagecreate($numWidth, $numHeight);
@@ -329,17 +330,17 @@ class RlResize {
 			{
 				//JPG or PNG image
 				$this->resResizedImage = imagecreatetruecolor($numWidth, $numHeight);
-			}		
-	
+			}
+
 			//update the image size details
 			$this->updateNewDetails();
-		
+
 			//do the actual image resize
 			if ( $this -> gdVersion >= 2 )
 			{
 				imagecopyresampled($this->resResizedImage, $this->resOriginalImage, 0, 0, 0, 0, $numWidth, $numHeight, $this->arrOriginalDetails[0], $this->arrOriginalDetails[1]);
 			}
-			else 
+			else
 			{
 				imagecopyresized($this->resResizedImage, $this->resOriginalImage, 0, 0, 0, 0, $numWidth, $numHeight, $this->arrOriginalDetails[0], $this->arrOriginalDetails[1]);
 			}
@@ -352,7 +353,7 @@ class RlResize {
 			copy( $this->strOriginalImagePath, $this->strResizedImagePath );
 			$this -> returnRes = true;
 		}
-		
+
 		$this -> destroyImage();
 	}
 
@@ -364,15 +365,15 @@ class RlResize {
 	*	@Param-2:		numHeight - Number - The height of the image in pixes
 	*	@Description:	Checks to see if we should allow the resize to take place or not depending on the size the image will be resized to
 	*
-	*/	
+	*/
 	function _imageProtect($numWidth, $numHeight){
 		if($this->boolProtect AND ($numWidth > $this->arrOriginalDetails[0] OR $numHeight > $this->arrOriginalDetails[1])){
 			return 0;
 		}
-		
+
 		return 1;
 	}
-	
+
 	/*
 	*
 	*	@Method:		resizeToWidth
@@ -383,7 +384,7 @@ class RlResize {
 	*/
 	function resizeToWidth($numWidth){
 		$numHeight=(int)(($numWidth*$this->arrOriginalDetails[1])/$this->arrOriginalDetails[0]);
-		$this->_resize($numWidth, $numHeight);	
+		$this->_resize($numWidth, $numHeight);
 	}
 
 	/*
@@ -396,9 +397,9 @@ class RlResize {
 	*/
 	function resizeToHeight($numHeight){
 		$numWidth=(int)(($numHeight*$this->arrOriginalDetails[0])/$this->arrOriginalDetails[1]);
-		$this->_resize($numWidth, $numHeight);	
+		$this->_resize($numWidth, $numHeight);
 	}
-	
+
 	/*
 	*
 	*	@Method:		resizeToPercent
@@ -410,7 +411,7 @@ class RlResize {
 	function resizeToPercent($numPercent){
 		$numWidth = (int)(($this->arrOriginalDetails[0]/100)*$numPercent);
 		$numHeight = (int)(($this->arrOriginalDetails[1]/100)*$numPercent);
-		$this->_resize($numWidth, $numHeight);	
+		$this->_resize($numWidth, $numHeight);
 	}
 
 	/*
@@ -422,26 +423,24 @@ class RlResize {
 	*
 	*/
 	function resizeToCustom($size)
-	{		
+	{
 		if(is_array($size))
 		{
 			// current image params
 			$_photo_width = $this->arrOriginalDetails[0];
 			$_photo_height = $this->arrOriginalDetails[1];
-			
+
 			// new image params
 			$img_width = (int)$size[0];
 			$img_height = (int)$size[1];
-			
+
 			$this->_resize($img_width, $img_height);
 		}
-		else 
+		else
 		{
 			$this->resizeToWidth($size);
 		}
 	}
-	
+
 }
 ?>
-
-

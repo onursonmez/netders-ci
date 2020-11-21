@@ -299,14 +299,14 @@
       case 'modal':
         template = '<div class="bootstrap-timepicker-widget modal hide fade in" data-backdrop="'+ (this.modalBackdrop ? 'true' : 'false') +'">'+
           '<div class="modal-header">'+
-            '<a href="#" class="close" data-dismiss="modal">×</a>'+
-            '<h3>Pick a Time</h3>'+
+            '<h5 class="modal-title">Tarih</h5>'+          
+            '<button type="button" class="close" data-dismiss="modal" aria-label="Kapat"><span aria-hidden="true">&times;</span></button>'+
           '</div>'+
           '<div class="modal-content">'+
             templateContent +
           '</div>'+
           '<div class="modal-footer">'+
-            '<a href="#" class="btn btn-primary" data-dismiss="modal">OK</a>'+
+            '<a href="#" class="btn btn-primary" data-dismiss="modal">Tamam</a>'+
           '</div>'+
         '</div>';
         break;
